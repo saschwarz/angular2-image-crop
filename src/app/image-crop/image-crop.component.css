@@ -1,0 +1,6 @@
+.image-crop .mask {
+    background-position: top left;
+    background-repeat: no-repeat;
+    display: block;
+    border: 1px solid black;
+}

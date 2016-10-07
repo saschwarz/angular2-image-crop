@@ -1,3 +1,14 @@
-<div>
-  
-</div>
+<div class="image-crop">
+    <div class="mask" [ngStyle]="getStyles()" [style.background-image]="image">
+        &nbsp;
+    </div>  
+    <div class="controls">
+        <label>Mask Width</label><input [(ngModel)]="width" />
+        <label>Mask Height</label><input [(ngModel)]="height" />
+    </div>  
+    <div>
+        <label>Course X</label><input [(ngModel)]="x" />
+        <label>Course Y</label><input [(ngModel)]="y" />
+        <label>Rotation</label><input [(ngModel)]="rotation" />
+    </div>  
+</div>      

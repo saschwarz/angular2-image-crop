@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ImageCropComponent } from './image-crop/image-crop.component';
 
 @Component({
   selector: 'app-root',
