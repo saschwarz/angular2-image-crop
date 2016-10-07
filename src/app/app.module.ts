@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ImageCropComponent } from './image-crop/image-crop.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ImageCropComponent
   ],
   imports: [
     BrowserModule,
