@@ -3,4 +3,5 @@
     background-repeat: no-repeat;
     display: block;
     border: 1px solid black;
+    transform-origin: center;
 }

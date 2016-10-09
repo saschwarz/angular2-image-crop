@@ -18,8 +18,10 @@ export class ImageCropComponent implements OnInit {
   x: number;
   y: number;
   rotation: number;
+  sanitizer: any;
 
   constructor(sanitizer: DomSanitizer) {
+    this.sanitizer = sanitizer;
     this.image = sanitizer.bypassSecurityTrustStyle('url(' + '/assets/course.png' + ')');
     this.width = 100;
     this.height = 200;
@@ -28,12 +30,13 @@ export class ImageCropComponent implements OnInit {
     this.rotation = 0;
   }
 
-  public getStyles(){
+  public getStyles() {
     return {
       'background-position': this.x + 'px ' + this.y + 'px',
       'height': this.height + 'px',
+      'transform': this.sanitizer.bypassSecurityTrustStyle('rotate(' + this.rotation + 'deg)'),
       'width': this.width + 'px'
-    }
+    };
   }
 
   ngOnInit() {
