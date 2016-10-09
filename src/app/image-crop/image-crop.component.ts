@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 
-class Mask {
-  width: Number;
-  height: Number;
-}
-
 @Component({
   selector: 'app-image-crop',
   templateUrl: './image-crop.component.html',
@@ -18,23 +13,30 @@ export class ImageCropComponent implements OnInit {
   x: number;
   y: number;
   rotation: number;
-  sanitizer: any;
+  transform: SafeStyle;
 
-  constructor(sanitizer: DomSanitizer) {
-    this.sanitizer = sanitizer;
-    this.image = sanitizer.bypassSecurityTrustStyle('url(' + '/assets/course.png' + ')');
-    this.width = 100;
+  constructor(private sanitizer: DomSanitizer) {
+    this.image = this.sanitizer.bypassSecurityTrustStyle('url(' + '/assets/course.png' + ')');
+    this.width = 300;
     this.height = 200;
     this.x = 0;
     this.y = 0;
-    this.rotation = 0;
+    this.rotation = 30;
   }
 
-  public getStyles() {
+  public getMaskStyles() {
+    return {
+      'height': this.height + 'px',
+      'width': this.width + 'px'
+    };
+  }
+
+  public getImageStyles() {
+    this.transform = this.sanitizer.bypassSecurityTrustStyle('rotate(' + this.rotation + 'deg)');
     return {
       'background-position': this.x + 'px ' + this.y + 'px',
+      'background-image': this.image,
       'height': this.height + 'px',
-      'transform': this.sanitizer.bypassSecurityTrustStyle('rotate(' + this.rotation + 'deg)'),
       'width': this.width + 'px'
     };
   }

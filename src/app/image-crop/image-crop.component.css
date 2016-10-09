@@ -1,7 +1,21 @@
+.image-crop .display {
+    overflow: hidden;
+    position: relative;
+}
 .image-crop .mask {
-    background-position: top left;
-    background-repeat: no-repeat;
+    border: 1px solid black;    
     display: block;
-    border: 1px solid black;
-    transform-origin: center;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.image-crop .image {
+    background-image: url(/assets/course.png);
+    background-repeat: no-repeat;
+    content: "";
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: -1;
 }
