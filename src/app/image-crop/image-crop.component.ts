@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 
 @Component({
@@ -7,21 +7,18 @@ import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
   styleUrls: ['./image-crop.component.css']
 })
 export class ImageCropComponent implements OnInit {
-  image: SafeStyle;
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-  rotation: number;
-  transform: SafeStyle;
+  @Input() imageURL: string;
+  @Input() width: number = 200;
+  @Input() height: number = 200;
+
+  private x: number = 0;
+  private y: number = 0;
+  private rotation: number = 0;
+  private transform: SafeStyle;
+  private image: SafeStyle;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.image = this.sanitizer.bypassSecurityTrustStyle('url(' + '/assets/course.png' + ')');
-    this.width = 300;
-    this.height = 200;
-    this.x = 0;
-    this.y = 0;
-    this.rotation = 30;
+    console.log(this.image);
   }
 
   public getMaskStyles() {
@@ -42,6 +39,7 @@ export class ImageCropComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.image = this.sanitizer.bypassSecurityTrustStyle('url(' + this.imageURL + ')');
   }
 
 }

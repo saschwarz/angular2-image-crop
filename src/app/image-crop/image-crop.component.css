@@ -11,11 +11,8 @@
     left: 0;
 }
 .image-crop .image {
-    background-image: url(/assets/course.png);
     background-repeat: no-repeat;
     content: "";
-    left: 0;
     position: absolute;
-    top: 0;
     z-index: -1;
 }
