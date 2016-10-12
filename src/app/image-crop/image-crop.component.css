@@ -3,7 +3,7 @@
     position: relative;
 }
 .image-crop .mask {
-    border: 1px solid black;    
+    border: 1px solid black;
     display: block;
     overflow: hidden;
     position: absolute;

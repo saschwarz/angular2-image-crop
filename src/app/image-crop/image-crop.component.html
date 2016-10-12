@@ -1,17 +1,19 @@
 <div class="image-crop">
-    <div class="display" [ngStyle]="getMaskStyles()">
+    <div class="display" [ngStyle]="getImageStyles()">
         <div class="image" [ngStyle]="getImageStyles()" [style.transform]="transform" [style.backgroundImage]="image"></div>
-        <div class="mask" [ngStyle]="getMaskStyles()"></div>  
+        <div class="mask" [ngStyle]="getMaskStyles()"></div>
     </div>
     <div class="controls">
         <div>
-            <label>Mask Width</label><input [(ngModel)]="width" />
-            <label>Mask Height</label><input [(ngModel)]="height" />
-        </div>  
+            <label>Mask Width</label><input [(ngModel)]="maskWidth" />
+            <label>Mask Height</label><input [(ngModel)]="maskHeight" />
+        </div>
         <div>
+            <label>Image Width</label><input [(ngModel)]="imageWidth" />
+            <label>Image Height</label><input [(ngModel)]="imageHeight" /><br>
             <label>Translate X</label><input [(ngModel)]="x" />
             <label>Translate Y</label><input [(ngModel)]="y" />
             <label>Rotate</label><input [(ngModel)]="rotation" />
         </div>
-    </div>    
-</div>      
+    </div>
+</div>
