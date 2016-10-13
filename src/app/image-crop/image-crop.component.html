@@ -1,5 +1,5 @@
 <div class="image-crop">
-    <div class="display">
+    <div class="display" (rotate)="onRotate($event)" (panstart)="onPanStart($event)" (panmove)="onPan($event)" >
         <svg class="mask" [attr.width]="imageWidth" [attr.height]="imageHeight" attr.viewBox="0 0 {{imageWidth}} {{imageHeight}}">
             <defs>
                 <mask id="mask" clipPathUnits="objectBoundingBox">
