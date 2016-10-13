@@ -1,18 +1,15 @@
 .image-crop .display {
-    overflow: hidden;
-    position: relative;
+    width: 100%;
+    /*overflow: hidden;*/
+    /*position: relative;*/
+    display: flex;
+    justify-content: center;
 }
 .image-crop .mask {
     border: 1px solid black;
     display: block;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.image-crop .image {
-    background-repeat: no-repeat;
-    content: "";
-    position: absolute;
-    z-index: -1;
+    /*overflow: hidden;*/
+    /*position: absolute;*/
+    /*top: 0;
+    left: 0;*/
 }
