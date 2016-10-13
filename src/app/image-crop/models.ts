@@ -12,7 +12,7 @@ export class Place {
     private height: number;
     private units: Units;
 
-    constructor(object:any){
+    constructor(object: any) {
         this.name = object.name;
         this.notes = object.notes;
         this.width = object.width;
@@ -44,7 +44,7 @@ export class Course {
     private imageScaledWidth: number;
     private imageScaledHeight: number;
 
-    constructor(object:any){
+    constructor(object: any) {
         this.name = object.name;
         this.notes = object.notes;
         this.width = object.width;
