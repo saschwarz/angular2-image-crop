@@ -15,16 +15,15 @@ export class ImageCropComponent implements OnInit {
   @Input() maskWidth: number;
   @Input() maskHeight: number;
   @Input() rotation: number = 0;
+  @Input() x: number = 0;
+  @Input() y: number = 0;
 
-  /* tslint:disable */
-  private x: number = 0;
-  private y: number = 0;
-  /* tslint:enable */
   private image: SafeStyle;
 
   /* pan/rotate event book keeping */
-  private startX: number = 0;
-  private startY: number = 0;
+  private startX: number;
+  private startY: number;
+  private startRotation: number;
 
   constructor(private sanitizer: DomSanitizer) {
   }
@@ -36,21 +35,21 @@ export class ImageCropComponent implements OnInit {
     };
   }
 
-  public getImageStyles() {
-    return {
-      'height': this.imageHeight + 'px',
-      'width': this.imageWidth + 'px'
-    };
+  public preventDefault(event: any): void {
+    // required on <image> tags to stop browser standard drag behavior
+    event.preventDefault();
   }
 
   onRotate(event: any /** TODO #9100 */): void {
     event.preventDefault();
-    this.rotation = event.rotation;
+    this.rotation = Math.floor((event.rotation - this.startRotation)) % 360;
   }
 
-  onPanStart(event: any): void {
+  onGestureStart(event: any): void {
+    event.preventDefault();
     this.startX = this.x;
     this.startY = this.y;
+    this.startRotation = Math.floor(parseInt(<string><any>event.rotation, 10) - parseInt(<string><any>this.rotation, 10)) % 360;
   }
 
   onPan(event: any /** TODO #9100 */): void {
@@ -62,6 +61,7 @@ export class ImageCropComponent implements OnInit {
   public onKey(event): void {
     console.log(event.key);
   }
+
   ngOnInit() {
     this.image = this.sanitizer.bypassSecurityTrustStyle('url(' + this.imageURL + ')');
   }

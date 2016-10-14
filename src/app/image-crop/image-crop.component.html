@@ -1,5 +1,5 @@
 <div class="image-crop">
-    <div class="display" (rotate)="onRotate($event)" (panstart)="onPanStart($event)" (panmove)="onPan($event)" >
+    <div class="display" (rotatemove)="onRotate($event)" (rotatestart)="onGestureStart($event)" (panstart)="onGestureStart($event)" (panmove)="onPan($event)" >
         <svg class="mask" [attr.width]="imageWidth" [attr.height]="imageHeight" attr.viewBox="0 0 {{imageWidth}} {{imageHeight}}">
             <defs>
                 <mask id="mask" clipPathUnits="objectBoundingBox">
@@ -8,9 +8,10 @@
                 </mask>
             </defs>
             <g  mask="url(#mask)">
-            <image class="image" [ngStyle]="getImageStyles()"
-                   attr.transform="translate({{x}} {{y}}) rotate({{rotation}} {{imageWidth/2}} {{imageHeight/2}})" [attr.xlink:href]="imageURL"/>
-            <rect x="0" y="0" attr.width="{{maskWidth}}" attr.height="{{maskHeight}}" stroke="green" stroke-width="2" fill="none"/>
+                <image class="image" attr.height="{{imageHeight}}" attr.width="{{imageWidth}}"
+                attr.transform="translate({{x}} {{y}}) rotate({{rotation}} {{imageWidth/2}} {{imageHeight/2}})"
+                [attr.xlink:href]="imageURL" (mousedown)="preventDefault($event)"/>
+                <rect x="0" y="0" attr.width="{{maskWidth}}" attr.height="{{maskHeight}}" stroke="green" stroke-width="2" fill="none"/>
             </g>
         </svg>
     </div>
