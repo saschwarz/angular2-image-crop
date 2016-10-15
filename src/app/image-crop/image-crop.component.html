@@ -1,5 +1,8 @@
 <div class="image-crop">
-    <div class="display" #display tabindex="0" (rotatemove)="onRotate($event)" (rotatestart)="onGestureStart($event)" (panstart)="onGestureStart($event)" (panmove)="onPan($event)" >
+    <div class="display" #display tabindex="0"
+         (rotatestart)="onGestureStart($event)" (rotatemove)="onRotate($event)"
+         (panstart)="onGestureStart($event)" (panmove)="onPan($event)"
+         (pinchstart)="onGestureStart($event)" (pinchmove)="onPinch($event)">
         <svg class="mask" [attr.width]="imageWidth" [attr.height]="imageHeight" attr.viewBox="0 0 {{imageWidth}} {{imageHeight}}">
             <defs>
                 <mask id="mask" clipPathUnits="objectBoundingBox">
@@ -7,7 +10,7 @@
                     <rect x="0" y="0" attr.width="{{imageWidth}}" attr.height="{{imageWidth}}" opacity="0.2" fill="white"/>
                 </mask>
             </defs>
-            <g  mask="url(#mask)">
+            <g mask="url(#mask)">
                 <image class="image" attr.height="{{imageHeight}}" attr.width="{{imageWidth}}"
                 attr.transform="translate({{x}} {{y}}) rotate({{rotation}} {{imageWidth/2}} {{imageHeight/2}})"
                 [attr.xlink:href]="imageURL" (mousedown)="preventDefault($event)"/>
@@ -22,7 +25,9 @@
         </div>
         <div>
             <label>Image Width</label><input [(ngModel)]="imageWidth" />
-            <label>Image Height</label><input [(ngModel)]="imageHeight" /><br>
+            <label>Image Height</label><input [(ngModel)]="imageHeight" />
+       </div>
+        <div>
             <label>Translate X</label><input [(ngModel)]="x" />
             <label>Translate Y</label><input [(ngModel)]="y" />
             <label>Rotate</label><input [(ngModel)]="rotation" />

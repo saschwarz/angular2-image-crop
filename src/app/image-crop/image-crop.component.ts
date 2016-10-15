@@ -10,10 +10,12 @@ import 'hammerjs';
 })
 export class ImageCropComponent implements OnInit, AfterViewInit {
   private image: SafeStyle;
-  /* pan/rotate event book keeping */
+  // pan/rotate event book keeping
   private startX: number;
   private startY: number;
   private startRotation: number;
+  private startMaskWidth: number;
+  private startMaskHeight: number;
 
   @ViewChild('display') display: ElementRef;
 
@@ -27,12 +29,13 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   @Input() y: number = 0;
 
   @HostListener('keyup', ['$event'])
-  onKey(event: KeyboardEvent): void{
+  onKey(event: KeyboardEvent): void {
       if (event.srcElement && event.srcElement.className === 'display') {
+        // TODO find a way to only supply key events when display has focus
         event.stopPropagation();
         event.preventDefault();
         let delta = event.shiftKey ? 10 : 1;
-        switch(event.code) {
+        switch (event.code) {
           case 'ArrowLeft':
             this.x -= delta;
             break;
@@ -70,22 +73,30 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
     event.preventDefault();
   }
 
-  onRotate(event: any): void {
-    event.preventDefault();
-    this.rotation = Math.floor((event.rotation - this.startRotation)) % 360;
-  }
-
   onGestureStart(event: any): void {
     event.preventDefault();
     this.startX = this.x;
     this.startY = this.y;
     this.startRotation = Math.floor(parseInt(<string><any>event.rotation, 10) - parseInt(<string><any>this.rotation, 10)) % 360;
+    this.startMaskHeight = this.maskHeight;
+    this.startMaskWidth = this.maskWidth;
   }
 
-  onPan(event: any /** TODO #9100 */): void {
+  onPan(event: any): void {
     event.preventDefault();
     this.x = this.startX + event.deltaX;
     this.y = this.startY + event.deltaY;
+  }
+
+  onRotate(event: any): void {
+    event.preventDefault();
+    this.rotation = Math.floor((event.rotation - this.startRotation)) % 360;
+  }
+
+  onPinch(event: any): void {
+    event.preventDefault();
+    this.maskHeight = Math.floor(this.startMaskHeight * event.scale);
+    this.maskWidth = Math.floor(this.startMaskWidth * event.scale);
   }
 
   ngOnInit(): void {
