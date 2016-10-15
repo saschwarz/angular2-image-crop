@@ -31,7 +31,7 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   @Input() y: number = 0;
 
   @HostListener('keyup', ['$event'])
-  onKey(event: KeyboardEvent): void {
+  protected onKey(event: KeyboardEvent): void {
       if (event.srcElement && event.srcElement.className === 'display') {
         // TODO find a way to only supply key events when display has focus
         event.stopPropagation();
@@ -63,21 +63,21 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   constructor(private sanitizer: DomSanitizer, private renderer: Renderer) {
   }
 
-  public corners(): Array<Number> {
-    // TODO this can't be called in template or it spin locks the browser(?)
-    return [this.maskX, this.maskY,
-            this.maskX + this.maskWidth, this.maskY,
-            this.maskX, this.maskY + this.maskHeight,
-            this.maskX + this.maskWidth, this.maskY + this.maskHeight];
+  public imageCorners(): Array<Number> {
+    let imageX = this.maskX - this.x;
+    let imageY = this.maskY - this.y;
+    return [imageX, imageY,
+            imageX + this.maskWidth, imageY,
+            imageX, imageY + this.maskHeight,
+            imageX + this.maskWidth, imageY + this.maskHeight];
   }
-  /* tslint:disable */
-  private preventDefault(event: any): void {
+
+  protected preventDefault(event: any): void {
     // required on <image> tags to stop browser standard drag behavior
     event.preventDefault();
   }
-  /* tslint:enable */
 
-  onGestureStart(event: any): void {
+  protected onGestureStart(event: any): void {
     event.preventDefault();
     // hammerjs events give deltas since start of gesture so
     // capture the initial values so I can apply the deltas for
@@ -89,30 +89,32 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
     this.startMaskWidth = this.maskWidth;
   }
 
-  onPan(event: any): void {
+  protected onPan(event: any): void {
     event.preventDefault();
     this.x = this.startX + event.deltaX;
     this.y = this.startY + event.deltaY;
   }
 
-  onRotate(event: any): void {
+  protected onRotate(event: any): void {
     event.preventDefault();
     this.rotation = Math.floor((event.rotation - this.startRotation)) % 360;
   }
 
-  onPinch(event: any): void {
+  protected onPinch(event: any): void {
     event.preventDefault();
     this.maskHeight = Math.floor(this.startMaskHeight * event.scale);
     this.maskWidth = Math.floor(this.startMaskWidth * event.scale);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.image = this.sanitizer.bypassSecurityTrustStyle('url(' + this.imageURL + ')');
     this.maskX = Math.floor((this.imageWidth - this.maskWidth) / 2);
     this.maskY = Math.floor((this.imageHeight - this.maskHeight) / 2);
+    this.maskWidth = parseInt(<string><any>this.maskWidth, 10);
+    this.maskHeight = parseInt(<string><any>this.maskHeight, 10);
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.renderer.invokeElementMethod(this.display.nativeElement, 'focus', []);
   }
 }
