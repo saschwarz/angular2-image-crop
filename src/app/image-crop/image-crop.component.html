@@ -6,7 +6,7 @@
         <svg class="mask" [attr.width]="imageWidth" [attr.height]="imageHeight" attr.viewBox="0 0 {{imageWidth}} {{imageHeight}}">
             <defs>
                 <mask id="mask" clipPathUnits="objectBoundingBox">
-                    <rect x="0" y="0" attr.width="{{maskWidth}}" attr.height="{{maskHeight}}" fill="white"/>
+                    <rect attr.x="{{maskX}}" attr.y="{{maskY}}" attr.width="{{maskWidth}}" attr.height="{{maskHeight}}" fill="white"/>
                     <rect x="0" y="0" attr.width="{{imageWidth}}" attr.height="{{imageWidth}}" opacity="0.2" fill="white"/>
                 </mask>
             </defs>
@@ -14,7 +14,7 @@
                 <image class="image" attr.height="{{imageHeight}}" attr.width="{{imageWidth}}"
                 attr.transform="translate({{x}} {{y}}) rotate({{rotation}} {{imageWidth/2}} {{imageHeight/2}})"
                 [attr.xlink:href]="imageURL" (mousedown)="preventDefault($event)"/>
-                <rect x="0" y="0" attr.width="{{maskWidth}}" attr.height="{{maskHeight}}" stroke="green" stroke-width="2" fill="none"/>
+                <rect attr.x="{{maskX}}" attr.y="{{maskY}}" attr.width="{{maskWidth}}" attr.height="{{maskHeight}}" stroke="green" stroke-width="2" fill="none"/>
             </g>
         </svg>
     </div>
@@ -32,5 +32,21 @@
             <label>Translate Y</label><input [(ngModel)]="y" />
             <label>Rotate</label><input [(ngModel)]="rotation" />
         </div>
+        <div>
+            <label>Image crop corners:</label>
+        </div>
+    </div>
+    <div class="help">
+        <p>Enter values above and/or use keys:</p>
+        <ul>
+            <li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
+            <li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
+        </ul>
+        <p>Use gestures:</p>
+        <ul>
+            <li>One finger Pan/Drag to position image.</li>
+            <li>Two finger rotate to rotate image.</li>
+            <li>Two finger pinch in/out to scale size of cropped area</li>
+        </ul>
     </div>
 </div>

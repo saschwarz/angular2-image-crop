@@ -10,6 +10,8 @@ import 'hammerjs';
 })
 export class ImageCropComponent implements OnInit, AfterViewInit {
   private image: SafeStyle;
+  private maskX: number = 0;
+  private maskY: number = 0;
   // pan/rotate event book keeping
   private startX: number;
   private startY: number;
@@ -61,20 +63,25 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   constructor(private sanitizer: DomSanitizer, private renderer: Renderer) {
   }
 
-  public getMaskStyles() {
-    return {
-      'height': this.maskHeight + 'px',
-      'width': this.maskWidth + 'px'
-    };
+  public corners(): Array<Number> {
+    // TODO this can't be called in template or it spin locks the browser(?)
+    return [this.maskX, this.maskY,
+            this.maskX + this.maskWidth, this.maskY,
+            this.maskX, this.maskY + this.maskHeight,
+            this.maskX + this.maskWidth, this.maskY + this.maskHeight];
   }
-
-  public preventDefault(event: any): void {
+  /* tslint:disable */
+  private preventDefault(event: any): void {
     // required on <image> tags to stop browser standard drag behavior
     event.preventDefault();
   }
+  /* tslint:enable */
 
   onGestureStart(event: any): void {
     event.preventDefault();
+    // hammerjs events give deltas since start of gesture so
+    // capture the initial values so I can apply the deltas for
+    // each event and update the view.
     this.startX = this.x;
     this.startY = this.y;
     this.startRotation = Math.floor(parseInt(<string><any>event.rotation, 10) - parseInt(<string><any>this.rotation, 10)) % 360;
@@ -101,6 +108,8 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.image = this.sanitizer.bypassSecurityTrustStyle('url(' + this.imageURL + ')');
+    this.maskX = Math.floor((this.imageWidth - this.maskWidth) / 2);
+    this.maskY = Math.floor((this.imageHeight - this.maskHeight) / 2);
   }
 
   ngAfterViewInit(): void {
