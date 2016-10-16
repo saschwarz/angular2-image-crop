@@ -33,7 +33,7 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   @HostListener('keyup', ['$event'])
   protected onKey(event: KeyboardEvent): void {
       if (event.srcElement && event.srcElement.className === 'display') {
-        // TODO find a way to only supply key events when display has focus
+        // TODO find a way to only supply key events when display element has focus
         event.stopPropagation();
         event.preventDefault();
         let delta = event.shiftKey ? 10 : 1;
@@ -64,6 +64,8 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   }
 
   public imageCorners(): Array<Number> {
+    // calculate the corners of the mask in coordinate system of the original image.
+    // TODO: doesn't handle rotated images.
     let imageX = this.maskX - this.x;
     let imageY = this.maskY - this.y;
     return [imageX, imageY,
@@ -108,10 +110,18 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
 
   public ngOnInit(): void {
     this.image = this.sanitizer.bypassSecurityTrustStyle('url(' + this.imageURL + ')');
-    this.maskX = Math.floor((this.imageWidth - this.maskWidth) / 2);
-    this.maskY = Math.floor((this.imageHeight - this.maskHeight) / 2);
+    // Seems I need to insure the type of inputs provided by the parent component
+    // otherwise these are treated as strings in calculations as in imageCorners().
+    // Specifying [maskWidth]="300" [maskHeight]="300" performs the type conversion.
+    this.x = parseInt(<string><any>this.x, 10);
+    this.y = parseInt(<string><any>this.y, 10);
+    this.rotation = parseInt(<string><any>this.rotation, 10);
     this.maskWidth = parseInt(<string><any>this.maskWidth, 10);
     this.maskHeight = parseInt(<string><any>this.maskHeight, 10);
+    this.imageWidth = parseInt(<string><any>this.imageWidth, 10);
+    this.imageHeight = parseInt(<string><any>this.imageHeight, 10);
+    this.maskX = Math.floor((this.imageWidth - this.maskWidth) / 2);
+    this.maskY = Math.floor((this.imageHeight - this.maskHeight) / 2);
   }
 
   public ngAfterViewInit(): void {
