@@ -4,6 +4,8 @@ This is an Angular 2 component I wrote to experiment with key bindings and gestu
 It uses SVG to create the mask over the image. It doesn't actually perform the cropping.
 Keyboard input is only accepted when the focus is on the image.
 
+The demo is at: https://saschwarz.github.io/angular2-image-crop/index.html
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.16.
 
 ## Development server

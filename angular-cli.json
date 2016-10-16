@@ -1,7 +1,7 @@
 {
   "project": {
     "version": "1.0.0-beta.16",
-    "name": "angular-image-crop"
+    "name": "angular2-image-crop"
   },
   "apps": [
     {
