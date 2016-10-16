@@ -1,6 +1,6 @@
 import { AngularImageCropPage } from './app.po';
 
-describe('angular-image-crop App', function() {
+describe('angular2-image-crop App', function() {
   let page: AngularImageCropPage;
 
   beforeEach(() => {
