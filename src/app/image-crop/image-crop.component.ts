@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, Renderer, ViewChild} from '@angular/core';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 import 'hammerjs';
+import 'hammer-timejs';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   // pan/rotate event book keeping
   private startX: number;
   private startY: number;
-  private startRotation: number;
+  private startRotation: number = 0;
   private startMaskWidth: number;
   private startMaskHeight: number;
 
@@ -100,6 +101,12 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   protected onRotate(event: any): void {
     event.preventDefault();
     this.rotation = Math.floor((event.rotation - this.startRotation)) % 360;
+  }
+
+  protected onPanRotate(event: any): void {
+    // pan up/down on compass element rotates
+    event.preventDefault();
+    this.rotation = Math.floor(event.deltaY / 4 - this.startRotation) % 360;
   }
 
   protected onPinch(event: any): void {

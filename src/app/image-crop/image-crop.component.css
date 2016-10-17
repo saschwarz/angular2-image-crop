@@ -7,3 +7,9 @@
     border: 1px solid black;
     display: block;
 }
+.pan-rotate {
+    position: absolute;
+    width: 100px;
+    height: 480px;
+    z-index: 100;
+}
