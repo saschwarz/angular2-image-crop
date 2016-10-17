@@ -20,7 +20,7 @@
             </svg>
         </div>
         <div>
-            <div class="pan-rotate" (panmove)="onPanRotate($event)"></div>
+            <div class="pan-rotate" (panstart)="onPanRotateStart($event)" (panmove)="onPanRotate($event)"></div>
             <svg width="500" height="500" viewBox="0 0 500 500">
                 <g attr.transform="translate(-440 {{(imageHeight - 500)/2}}) rotate({{rotation - 180}}, 250 250)">
                     <image class="compass" width="500" height="500"

@@ -103,10 +103,17 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
     this.rotation = Math.floor((event.rotation - this.startRotation)) % 360;
   }
 
+  protected onPanRotateStart(event: any): void {
+    // pan up/down on compass element rotates
+    event.preventDefault();
+    this.startRotation = this.rotation;
+    this.startY = event.deltaY;
+  }
+
   protected onPanRotate(event: any): void {
     // pan up/down on compass element rotates
     event.preventDefault();
-    this.rotation = Math.floor(event.deltaY / 4 - this.startRotation) % 360;
+    this.rotation = Math.floor((event.deltaY - this.startY) / 4 + this.startRotation) % 360;
   }
 
   protected onPinch(event: any): void {
