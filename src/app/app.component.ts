@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular2 Image Crop UI Experiment';
+  title = 'Angular 2 Image Crop UI Experiment';
 }

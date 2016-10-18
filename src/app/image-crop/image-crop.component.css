@@ -9,7 +9,5 @@
 }
 .pan-rotate {
     position: absolute;
-    width: 100px;
-    height: 480px;
     z-index: 100;
 }

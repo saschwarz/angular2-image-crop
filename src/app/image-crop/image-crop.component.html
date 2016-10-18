@@ -15,13 +15,14 @@
                     attr.transform="translate({{x}} {{y}}) rotate({{rotation}} {{imageWidth/2}} {{imageHeight/2}})"
                     [attr.xlink:href]="imageURL" (mousedown)="preventDefault($event)"/>
                     <rect attr.x="{{maskX}}" attr.y="{{maskY}}" attr.width="{{maskWidth}}" attr.height="{{maskHeight}}"
-                    stroke="green" stroke-width="2" fill="none"/>
+                    stroke="red" stroke-width="3" fill="none"/>
                 </g>
             </svg>
         </div>
         <div>
-            <div class="pan-rotate" (panstart)="onPanRotateStart($event)" (panmove)="onPanRotate($event)"></div>
+            <div class="pan-rotate" (panstart)="onPanRotateStart($event)" (panmove)="onPanRotate($event)" [style.width.px]="90" [style.height.px]="imageHeight"></div>
             <svg width="80" height="500" viewBox="0 0 80 500">
+                <line x1="0" attr.y1="{{imageHeight/2}}" x2="60" attr.y2="{{imageHeight/2}}" stroke="red" stroke-width="2"/>
                 <g attr.transform="translate(-440 {{(imageHeight - 500)/2}}) rotate({{rotation - 180}}, 250 250)">
                     <image class="compass" width="500" height="500"
                     xlink:href="assets/compass.svg"/>
