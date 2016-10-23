@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -23,6 +24,8 @@ import { DimensionedCroppedImageComponent } from './dimensioned-cropped-image/di
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,
+    { provide: APP_BASE_HREF, useValue: '/' }
+  ]
 })
 export class AppModule { }
