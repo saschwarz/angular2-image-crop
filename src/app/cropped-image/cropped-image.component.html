@@ -1,11 +1,11 @@
 <div class="cropped-image">
     <svg attr.width="{{mask.width}}" attr.height="{{mask.height}}" attr.viewBox="0 0 {{mask.width}} {{mask.height}}">
         <defs>
-            <mask clipPathUnits="objectBoundingBox">
+            <mask id="cropped-image-mask" clipPathUnits="objectBoundingBox">
                 <rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white"/>
             </mask>
         </defs>
-        <g mask="url(#mask)" attr.transform="translate({{-mask.x}} {{-mask.y}})">
+        <g mask="url(#cropped-image-mask)" attr.transform="translate({{-mask.x}} {{-mask.y}})">
             <image [attr.width]="image.width" [attr.height]="image.height" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})" [attr.xlink:href]="image.url"/>
         </g>
     </svg>

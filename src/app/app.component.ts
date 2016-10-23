@@ -16,5 +16,5 @@ export class AppComponent {
   image = new Image({width: 600,
                      height: 600,
                      rotation: 0,
-                     url: 'https://unsplash.it/600/600'})
+                     url: 'https://unsplash.it/600/600'});
 }
