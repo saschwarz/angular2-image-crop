@@ -107,6 +107,6 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.renderer.invokeElementMethod(this.display.nativeElement, 'focus', []);
+    // this.renderer.invokeElementMethod(this.display.nativeElement, 'focus', []);
   }
 }
