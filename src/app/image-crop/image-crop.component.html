@@ -10,7 +10,7 @@
                         <rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white"/>
                     </mask>
                 </defs>
-                <g mask="url(#mask)">
+                <g mask="url(/#mask)">
                     <image class="image" attr.height="{{image.height}}" attr.width="{{image.width}}"
                     attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})"
                     [attr.xlink:href]="image.url" (mousedown)="preventDefault($event)"/>
