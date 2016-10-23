@@ -1,8 +1,7 @@
 # Angular 2 Image Crop Experiment
 
-This is an Angular 2 component I wrote to experiment with key bindings and gestures for cropping an image where the crop area stays stationary and the image moves while retaining the crop area proportions.
-It doesn't actually perform the cropping.
-It uses SVG to create the mask over the image. Keyboard input is only accepted when the focus is on the image.
+This is an Angular 2 component I wrote to experiment with key bindings and gestures for cropping an image using SVG image masking; so it doesn't actually perform the cropping.
+Keyboard input is only accepted when the focus is on the image.
 
 There is a delay in starting the rotation due to the vertical motion being interpreted as a scroll event. It starts rotation sooner if there is a horizontal component in the panning motion.
 

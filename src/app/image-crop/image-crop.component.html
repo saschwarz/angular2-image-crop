@@ -6,8 +6,8 @@
             <svg class="mask" [attr.width]="image.width" [attr.height]="image.height" attr.viewBox="0 0 {{image.width}} {{image.height}}">
                 <defs>
                     <mask id="mask" clipPathUnits="objectBoundingBox">
-                        <rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white"/>
                         <rect x="0" y="0" attr.width="{{image.width}}" attr.height="{{image.width}}" opacity="0.2" fill="white"/>
+                        <rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white"/>
                     </mask>
                 </defs>
                 <g mask="url(#mask)">
