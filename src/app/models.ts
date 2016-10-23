@@ -47,8 +47,8 @@ export class Mask extends Image {
 
     constructor(object: any) {
         super(object);
-        this.x = object.x;
-        this.y = object.y;
+        this.x = object.x || 0;
+        this.y = object.y || 0;
     }
 }
 

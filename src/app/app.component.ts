@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Image } from './models';
+import { Image, Mask } from './models';
 
 
 @Component({
@@ -9,12 +9,12 @@ import { Image } from './models';
 })
 export class AppComponent {
   title = 'Angular 2 Image Crop UI Experiment';
-  mask = new Image({width: 300,
+  mask = new Mask({width: 300,
                     height: 300,
-                    x: 300,
-                    y: 300});
+                    x: 150,
+                    y: 150});
   image = new Image({width: 600,
                      height: 600,
-                     rotation: 90,
+                     rotation: 0,
                      url: 'https://unsplash.it/600/600'})
 }
