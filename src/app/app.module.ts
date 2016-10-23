@@ -23,9 +23,9 @@ import { DimensionedCroppedImageComponent } from './dimensioned-cropped-image/di
     FormsModule,
     HttpModule
   ],
-  providers: [],
-  bootstrap: [AppComponent,
+  providers: [,
     { provide: APP_BASE_HREF, useValue: '/' }
-  ]
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
