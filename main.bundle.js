@@ -40059,7 +40059,9 @@ var AppComponent = (function () {
         this.image = new __WEBPACK_IMPORTED_MODULE_1__models__["b" /* Image */]({ width: 600,
             height: 600,
             rotation: 0,
-            url: 'https://unsplash.it/600/600' });
+            //  url: 'https://unsplash.it/600/600'
+            url: 'assets/flatiron.jpeg'
+        });
     }
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
