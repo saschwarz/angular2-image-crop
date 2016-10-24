@@ -1,10 +1,9 @@
 <!doctype html>
 <html>
-<head>
+<head><base href="/angular2-image-crop/">
 	<meta charset="utf-8">
 	<title>Angular2 Image Crop Experiment</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<base href="/angular2-image-crop/">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
@@ -18,12 +17,12 @@
 				<div style="touch-action: none; -webkit-user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
 					<svg class="mask" width="600" height="600" viewBox="0 0 600 600">
 						<defs>
-							<mask clipPathUnits="objectBoundingBox" id="image-crop-mask">
+							<mask clipPathUnits="objectBoundingBox" id="image-crop-mask-2">
 								<rect fill="white" x="150" y="150" width="300" height="300"></rect>
 								<rect fill="white" opacity="0.2" x="0" y="0" width="600" height="600"></rect>
 							</mask>
 						</defs>
-						<g mask="url(#image-crop-mask)">
+						<g mask="url(#image-crop-mask-2)">
 							<image class="image" height="600" width="600" transform="rotate(0 300 300)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/flatiron.jpeg"></image>
 							<rect fill="none" stroke="red" stroke-width="3" x="150" y="150" width="300" height="300"></rect>
 						</g>
