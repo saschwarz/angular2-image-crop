@@ -1,5 +1,5 @@
 <div class="image-crop">
-	<div class="display" #display tabindex="0">
+	<div class="display" tabindex="0">
 		<div (panstart)="onGestureStart($event)" (panmove)="onPan($event)" (pinchstart)="onGestureStart($event)" (pinchmove)="onPinch($event)">
 			<svg class="mask" [attr.width]="image.width" [attr.height]="image.height" attr.viewBox="0 0 {{image.width}} {{image.height}}">
 				<defs>

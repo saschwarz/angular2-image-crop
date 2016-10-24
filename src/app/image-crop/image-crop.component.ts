@@ -18,7 +18,7 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   private startMaskWidth: number;
   private startMaskHeight: number;
 
-  @ViewChild('display') display: ElementRef;
+  // @ViewChild('display') display: ElementRef;
 
   @Input() mask: Mask;
   @Input() image: Image;
