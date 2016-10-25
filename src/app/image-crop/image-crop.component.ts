@@ -79,9 +79,18 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
     this.mask.y = this.startY + event.deltaY;
   }
 
+  protected rotateTo(degrees: number): void {
+    this.image.rotation = Math.floor(degrees) % 360;
+  }
+
+  protected onRotateBy(event: any, degrees: number): void {
+    event.preventDefault();
+    this.image.rotation = Math.floor(this.image.rotation + degrees) % 360;
+  }
+
   protected onRotate(event: any): void {
     event.preventDefault();
-    this.image.rotation = Math.floor((event.rotation - this.startRotation)) % 360;
+    this.rotateTo(event.rotation - this.startRotation);
   }
 
   protected onPanRotateStart(event: any): void {
@@ -94,7 +103,7 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
   protected onPanRotate(event: any): void {
     // pan up/down on compass element rotates
     event.preventDefault();
-    this.image.rotation = Math.floor((event.deltaY - this.startY) / 4 + this.startRotation) % 360;
+    this.rotateTo((event.deltaY - this.startY) / 4 + this.startRotation);
   }
 
   protected onPinch(event: any): void {

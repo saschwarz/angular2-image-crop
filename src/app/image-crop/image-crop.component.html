@@ -20,6 +20,8 @@
 					<image class="compass" width="500" height="500" xlink:href="assets/compass.svg" (mousedown)="preventDefault($event)" (panstart)="onPanRotateStart($event)"
 						(panmove)="onPanRotate($event)" />
 				</g>
+				<image class="rotate-counterclockwise" x="10" y="15" width="40" height="40" xlink:href="assets/rotate-counterclockwise.svg" (mousedown)="onRotateBy($event, -1)"/>
+				<image class="rotate-clockwise" x="10" y="445" width="40" height="40" xlink:href="assets/rotate-clockwise.svg" (mousedown)="onRotateBy($event, 1)"/>
 			</svg>
 		</svg>
 	</div>
