@@ -1,30 +1,26 @@
 <div class="image-crop">
-	<div class="display" tabindex="0">
-		<div (panstart)="onGestureStart($event)" (panmove)="onPan($event)" (pinchstart)="onGestureStart($event)" (pinchmove)="onPinch($event)">
-			<svg class="mask" [attr.width]="image.width" [attr.height]="image.height" attr.viewBox="0 0 {{image.width}} {{image.height}}">
-				<defs>
-					<mask id="image-crop-mask" clipPathUnits="objectBoundingBox">
-						<rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white" />
-						<rect x="0" y="0" attr.width="{{image.width}}" attr.height="{{image.width}}" opacity="0.2" fill="white" />
-					</mask>
-				</defs>
-				<g mask="url(#image-crop-mask)">
-					<image class="image" attr.height="{{image.height}}" attr.width="{{image.width}}" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})"
-						[attr.xlink:href]="image.url" (mousedown)="preventDefault($event)" />
-					<rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" stroke="red" stroke-width="3"
-						fill="none" />
+	<div class="display svg-container" tabindex="0">
+		<svg version="1.1" class="mask svg-content" attr.width="100%" attr.height="100%" attr.viewBox="0 0 {{image.width}} {{image.height}}">
+			<defs>
+				<mask id="image-crop-mask" clipPathUnits="objectBoundingBox">
+					<rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white" />
+					<rect x="0" y="0" attr.width="{{image.width}}" attr.height="{{image.width}}" opacity="0.2" fill="white" />
+				</mask>
+			</defs>
+			<g mask="url(#image-crop-mask)" (panstart)="onGestureStart($event)" (panmove)="onPan($event)" (pinchstart)="onGestureStart($event)"
+				(pinchmove)="onPinch($event)">
+				<image class="image" attr.height="{{image.height}}" attr.width="{{image.width}}" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})"
+					[attr.xlink:href]="image.url" (mousedown)="preventDefault($event)" />
+				<rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" stroke="red" stroke-width="3"
+					fill="none" />
+			</g>
+			<svg version="1.1" height="100%" viewBox="0 0 500 500">
+				<line x1="0" y1="250" x2="60" y2="250" stroke="red" stroke-width="2" />
+				<g attr.transform="translate(-440 0) rotate({{image.rotation - 180}} 250 250)">
+					<image class="compass" width="500" height="500" xlink:href="assets/compass.svg" (mousedown)="preventDefault($event)" (panstart)="onPanRotateStart($event)"
+						(panmove)="onPanRotate($event)" />
 				</g>
 			</svg>
-		</div>
-		<div>
-			<div class="pan-rotate" (panstart)="onPanRotateStart($event)" (panmove)="onPanRotate($event)" [style.width.px]="90" [style.height.px]="image.height">
-				<svg height="100%" viewBox="0 0 500 500">
-					<line x1="0" y1="250" x2="60" y2="250" stroke="red" stroke-width="2" />
-					<g attr.transform="translate(-440 0) rotate({{image.rotation - 180}} 250 250)">
-						<image class="compass" width="500" height="500" xlink:href="assets/compass.svg" (mousedown)="preventDefault($event)"/>
-					</g>
-				</svg>
-			</div>
-		</div>
+		</svg>
 	</div>
 </div>
