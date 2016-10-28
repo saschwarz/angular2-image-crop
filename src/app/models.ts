@@ -1,12 +1,3 @@
-/**
- * Actual units represented within the image.
- */
-export enum Units {
-    inches,
-    feet,
-    meters
-}
-
 
 export class Image {
     title: string = '';
@@ -38,8 +29,8 @@ export class Image {
 
 /**
  * Mask is an area or image overlayed/cropping an Image.
- * The x/y location is relative to the Image over which
- * this Mask is overlayed.
+ * The x/y location is relative to the top left corner of
+ * the Image over which this Mask is overlayed in pixels.
  */
 export class Mask extends Image {
     x: number = 0;
@@ -53,41 +44,107 @@ export class Mask extends Image {
 }
 
 /**
- * ScaledImage is
+ * Actual units represented by the Image/Mask.
+ * To support conversions.
  */
-export class ScaledImage extends Image {
+export enum Units {
+    inches,
+    feet,
+    meters
+}
+
+
+export class Dimensions {
+
     units: Units;
+    /**
+     * X location in units.
+     */
+    x: number = 0;
+    /**
+     * Y location in units.
+     */
+    y: number = 0;
     /**
      * Width in units.
      */
-    actualWidth: number;
+    width: number;
     /**
      * Height in units.
      */
-    actualHeight: number;
+    height: number;
 
-    scaledWidthPixels: number;
-    scaledHeightPixels: number;
+    constructor({units = Units.meters, width = 100, height = 100, x = 0, y = 0} = {}) {
+        this.units = units;
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;
+    }
+}
 
-    constructor(object: any) {
-        super(object);
-        this.units = object.units || Units.meters;
-        this.actualWidth = object.actualWidth;
-        this.actualHeight = object.actualHeight;
+
+/**
+ * DimensionedImage is an Image with a dimensions member describing
+ * the Image's real world size.
+ */
+export class DimensionedImage {
+    image: Image | Grid;
+    dimensions: Dimensions;
+
+    constructor(image: Image|Grid, dimensions: Dimensions) {
+        this.image = image;
+        this.dimensions = dimensions;
     }
 
-    public widthPixelsPerMeter(pixels): number {
-        let ratio = pixels / this.width;
-        if (this.units === Units.feet) {
-            ratio *= 0.3048;  // feet/meter
-        }
-        return ratio;
-    }
+    // public widthPixelsPerMeter(pixels): number {
+    //     let ratio = pixels / this.width;
+    //     if (this.dimensions.units === Units.feet) {
+    //         ratio *= 0.3048;  // feet/meter
+    //     }
+    //     return ratio;
+    // }
 
     public scaleImage(pixelsPerMeter: number) {
         // Scale image to match
-        const conversion = this.units === Units.meters ? 1 : 0.3048;
-        this.scaledWidthPixels = this.width * pixelsPerMeter * conversion;
-        this.scaledHeightPixels = this.height * pixelsPerMeter * conversion;
+        // const conversion = this.dimensions.units === Units.meters ? 1 : 0.3048;
+        // this.scaledWidthPixels = this.width * pixelsPerMeter * conversion;
+        // this.scaledHeightPixels = this.height * pixelsPerMeter * conversion;
     }
 };
+
+
+export class Grid {
+    units: Units = Units.meters;
+    width: number;
+    height: number;
+    spacing: number;
+
+    constructor(object: any) {
+        this.units = object.units;
+        this.width = object.width;
+        this.height = object.height;
+        this.spacing = object.spacing;
+    }
+
+    private lines(max: number) {
+        let i = 0;
+        let lines: Array<number> = [];
+        while (true) {
+            let y = ++i * this.spacing;
+            if (y < max) {
+                lines.push(y);
+            } else {
+                return lines;
+            }
+        }
+    }
+
+    public horizontalLines() {
+        return this.lines(this.height);
+    }
+
+    public verticalLines() {
+        return this.lines(this.width);
+    }
+}

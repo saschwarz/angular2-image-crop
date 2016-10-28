@@ -1,3 +1,14 @@
-<p>
-  dimensioned-cropped-image works!
-</p>
+<div class="dimensioned-cropped-image">
+	<svg attr.width="{{mask.image.width}}" attr.height="{{mask.image.height}}" attr.viewBox="0 0 {{mask.dimensions.width}} {{mask.dimensions.height}}">
+		<defs>
+			<mask id="dimensioned-cropped-image-mask" clipPathUnits="objectBoundingBox">
+				<rect attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}"
+					fill="white" />
+			</mask>
+		</defs>
+		<g mask="url(#dimensioned-cropped-image-mask)" attr.transform="translate({{-mask.dimensions.x}} {{-mask.dimensions.y}})">
+			<image [attr.width]="scaledWidth" [attr.height]="scaledHeight" attr.transform="rotate({{image.image.rotation}} {{scaledWidth/2}} {{scaledHeight/2}})"
+				[attr.xlink:href]="image.image.url" />
+		</g>
+	</svg>
+</div>

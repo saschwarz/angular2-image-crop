@@ -3,13 +3,23 @@
 </h1>
 <p>All examples share the same data model; any edits are reflected in all components.</p>
 <div class="section">
-	<h2>Cropped Image</h2>
-	<p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image</p>
-	<cropped-image [mask]="mask" [image]="image"></cropped-image>
+	<h2>Crop Image - Moveable Mask Rotating Image</h2>
+	<p>Move the mask via mouse, gestures, or enter values in inputs and/or use keys:</p>
+	<ul>
+		<li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
+		<li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
+	</ul>
+	<p>Use gestures:</p>
+	<ul>
+		<li>One finger Pan/Drag to position image.</li>
+		<li>Two finger rotate to rotate image.</li>
+		<li>Two finger pinch in/out to scale size of cropped area</li>
+	</ul>
+	<app-image-crop [mask]="mask" [image]="image"></app-image-crop>
 	<div class="controls">
 		<div class="row">
 			<div class="six columns">
-				<label for="mwidth">Mask Width</label><input type="text" id="mwidth" [(ngModel)]="mask.width" class="u-full-width" />
+				<label>Mask Width</label><input type="text" [(ngModel)]="mask.width" class="u-full-width" />
 			</div>
 			<div class="six columns">
 				<label>Mask Height</label><input type="text" [(ngModel)]="mask.height" class="u-full-width" />
@@ -37,23 +47,13 @@
 	</div>
 </div>
 <div class="section">
-	<h2>Crop Image - Moveable Mask Rotating Image</h2>
-	<p>Move the mask via mouse, gestures, or enter values in inputs and/or use keys:</p>
-	<ul>
-		<li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
-		<li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
-	</ul>
-	<p>Use gestures:</p>
-	<ul>
-		<li>One finger Pan/Drag to position image.</li>
-		<li>Two finger rotate to rotate image.</li>
-		<li>Two finger pinch in/out to scale size of cropped area</li>
-	</ul>
-	<app-image-crop [mask]="mask" [image]="image"></app-image-crop>
+	<h2>Cropped Image</h2>
+	<p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image.</p>
+	<cropped-image [mask]="mask" [image]="image"></cropped-image>
 	<div class="controls">
 		<div class="row">
 			<div class="six columns">
-				<label for="mwidth">Mask Width</label><input type="text" id="mwidth" [(ngModel)]="mask.width" class="u-full-width" />
+				<label>Mask Width</label><input type="text" [(ngModel)]="mask.width" class="u-full-width" />
 			</div>
 			<div class="six columns">
 				<label>Mask Height</label><input type="text" [(ngModel)]="mask.height" class="u-full-width" />
@@ -76,6 +76,60 @@
 			</div>
 			<div class="four columns">
 				<label>Image Rotate</label><input type="text" [(ngModel)]="image.rotation" class="u-full-width" />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section" id="gridimage">
+	<h2>Grid Image that can be used as a Mask.</h2>
+	<p>Here the dimensions are in pixels. When used with <a href="#dimensionedimagecrop">DimensionedImageCrop</a> or <a href="#dimensionedcroppedimage">DimensionedCroppedImage</a> the dimensions could be in scaled units.</p>
+	<grid-image [grid]="grid"></grid-image>
+	<div class="controls">
+		<div class="row">
+			<div class="four columns">
+				<label>Grid Width</label><input type="text" [(ngModel)]="grid.width" class="u-full-width" />
+			</div>
+			<div class="four columns">
+				<label>Grid Height</label><input type="text" [(ngModel)]="grid.height" class="u-full-width" />
+			</div>
+			<div class="four columns">
+				<label>Grid Spacing</label><input type="text" [(ngModel)]="grid.spacing" class="u-full-width" />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section" id="dimensionedcroppedimage">
+	<h2>Dimensioned Cropped Image</h2>
+	<p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image.
+		The Image is resized to match the scale of the Mask. Here the Mask is an SVG grid provided by <a href="#gridimage">GridImage</a>.
+	</p>
+	<dimensioned-cropped-image [mask]="dMask" [image]="dImage"></dimensioned-cropped-image>
+	<div class="controls">
+		<div class="row">
+			<div class="six columns">
+				<label>Mask Width</label><input type="text" [(ngModel)]="dMask.image.width" class="u-full-width" />
+			</div>
+			<div class="six columns">
+				<label>Mask Height</label><input type="text" [(ngModel)]="dMask.image.height" class="u-full-width" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="six columns">
+				<label>Image Width</label><input type="text" [(ngModel)]="dImage.image.width" class="u-full-width" />
+			</div>
+			<div class="six columns">
+				<label>Image Height</label><input type="text" [(ngModel)]="dImage.image.height" class="u-full-width" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="four columns">
+				<label>Image Translate X</label><input type="text" [(ngModel)]="dMask.image.x" class="u-full-width" />
+			</div>
+			<div class="four columns">
+				<label>Image Translate Y</label><input type="text" [(ngModel)]="dMask.image.y" class="u-full-width" />
+			</div>
+			<div class="four columns">
+				<label>Image Rotate</label><input type="text" [(ngModel)]="dImage.image.rotation" class="u-full-width" />
 			</div>
 		</div>
 	</div>

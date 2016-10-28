@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ScaledImage } from '../models';
+import { DimensionedImage } from '../models';
 import { ImageCropComponent } from '../image-crop/image-crop.component';
 
 /**
@@ -18,8 +18,8 @@ import { ImageCropComponent } from '../image-crop/image-crop.component';
 export class DimensionedImageCropComponent implements OnInit, AfterViewInit {
   // Set the size of the mask in units instead of in pixels.
   //
-  @Input() mask: ScaledImage;
-  @Input() image: ScaledImage;
+  @Input() mask: DimensionedImage;
+  @Input() image: DimensionedImage;
   /**
    * Optional width of component.
    */
@@ -45,6 +45,6 @@ export class DimensionedImageCropComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     /* Scale image/mask */
     console.log(this.wrapper);
-    var bb = this.wrapper.nativeElement.getBoundingClientRect();
+    let bb = this.wrapper.nativeElement.getBoundingClientRect();
   }
 }

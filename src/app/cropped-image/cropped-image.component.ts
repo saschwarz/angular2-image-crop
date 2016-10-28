@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Image, Mask } from '../models';
 
 
 /**
- * Display only cropped area of image.
+ * Display image cropped to the size of the mask.
  */
 @Component({
   selector: 'cropped-image',

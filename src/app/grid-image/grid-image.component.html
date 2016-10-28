@@ -1,0 +1,9 @@
+<div class="grid-image">
+	<svg version="1.1" class="mask svg-content" attr.width="100%" attr.height="100%" attr.viewBox="0 0 {{grid.width}} {{grid.height}}">
+		<rect attr.x="0" attr.y="0" attr.width="{{grid.width}}" attr.height="{{grid.height}}" stroke="black" stroke-width="0.1" fill="none" />
+		<line *ngFor="let y of grid.horizontalLines()" attr.x1="0" attr.y1="{{y}}" attr.x2="{{grid.width}}" attr.y2="{{y}}" stroke="black"
+			stroke-width="0.1" fill="none" />
+		<line *ngFor="let x of grid.verticalLines()" attr.x1="{{x}}" attr.y1="0" attr.x2="{{x}}" attr.y2="{{grid.height}}" stroke="black"
+			stroke-width="0.1" fill="none" />
+	</svg>
+</div>

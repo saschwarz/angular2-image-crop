@@ -1,6 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, Renderer, ViewChild} from '@angular/core';
-import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
-import 'hammerjs';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';import 'hammerjs';
 import 'hammer-timejs';
 import { Image, Mask } from '../models';
 
@@ -10,7 +8,7 @@ import { Image, Mask } from '../models';
   templateUrl: './image-crop.component.html',
   styleUrls: ['./image-crop.component.css']
 })
-export class ImageCropComponent implements OnInit, AfterViewInit {
+export class ImageCropComponent {
   // pan/rotate event book keeping
   private startX: number;
   private startY: number;
@@ -51,9 +49,6 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
             break;
         }
       }
-  }
-
-  constructor(private sanitizer: DomSanitizer, private renderer: Renderer) {
   }
 
   protected preventDefault(event: any): void {
@@ -110,12 +105,5 @@ export class ImageCropComponent implements OnInit, AfterViewInit {
     event.preventDefault();
     this.mask.height = Math.floor(this.startMaskHeight * event.scale);
     this.mask.width = Math.floor(this.startMaskWidth * event.scale);
-  }
-
-  public ngOnInit(): void {
-  }
-
-  public ngAfterViewInit(): void {
-    // this.renderer.invokeElementMethod(this.display.nativeElement, 'focus', []);
   }
 }
