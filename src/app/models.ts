@@ -53,10 +53,14 @@ export enum Units {
     meters
 }
 
-
+/**
+ * The relative location and size of an Image or Mask
+ */
 export class Dimensions {
-
-    units: Units;
+    /**
+     * Units for all dimension attributes.
+     */
+    units: Units = Units.meters;
     /**
      * X location in units.
      */
@@ -89,27 +93,12 @@ export class Dimensions {
  * the Image's real world size.
  */
 export class DimensionedImage {
-    image: Image | Grid;
+    image: Image;
     dimensions: Dimensions;
 
-    constructor(image: Image|Grid, dimensions: Dimensions) {
+    constructor(image: Image, dimensions: Dimensions) {
         this.image = image;
         this.dimensions = dimensions;
-    }
-
-    // public widthPixelsPerMeter(pixels): number {
-    //     let ratio = pixels / this.width;
-    //     if (this.dimensions.units === Units.feet) {
-    //         ratio *= 0.3048;  // feet/meter
-    //     }
-    //     return ratio;
-    // }
-
-    public scaleImage(pixelsPerMeter: number) {
-        // Scale image to match
-        // const conversion = this.dimensions.units === Units.meters ? 1 : 0.3048;
-        // this.scaledWidthPixels = this.width * pixelsPerMeter * conversion;
-        // this.scaledHeightPixels = this.height * pixelsPerMeter * conversion;
     }
 };
 

@@ -10,19 +10,32 @@ import { Dimensions, DimensionedImage, Grid, Image, Mask, Units } from './models
 export class AppComponent {
   title = 'Angular 2 Image Crop UI Experiment';
   mask = new Mask({
-    width: 300,
-    height: 300,
-    x: 150,
-    y: 150
+    width: 400,
+    height: 400,
+    x: 200,
+    y: 200
   });
   image = new Image({
-    width: 600,
-    height: 600,
+    width: 800,
+    height: 800,
     rotation: 0,
     url: 'assets/flatiron.jpeg'
   });
   grid = new Grid({ width: 100, height: 80, spacing: 10, units: Units.meters });
-  dimensions = new Dimensions();
-  dImage = new DimensionedImage(this.image, this.dimensions);
-  dMask = new DimensionedImage(this.mask, this.dimensions);
+  mask2 = new Mask({
+    width: 400,
+    height: 400,
+    x: 200,
+    y: 200
+  });
+  image2 = new Image({
+    width: 800,
+    height: 800,
+    rotation: 0,
+    url: 'assets/200x200.png'
+  });
+  mDims = new Dimensions({y: 50, width: 100.1, height: 100.1});
+  iDims = new Dimensions({width: 200, height: 200});
+  dImage = new DimensionedImage(this.image2, this.iDims);
+  dMask = new DimensionedImage(this.mask2, this.mDims);
 }

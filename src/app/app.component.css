@@ -1,3 +1,7 @@
 .section {
   padding: 0 0 2rem;
 }
+fieldset {
+  border: 1px #D1D1D1 solid;
+  padding: 1px 10px;
+}

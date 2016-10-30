@@ -10,7 +10,7 @@ import { ImageCropComponent } from '../image-crop/image-crop.component';
  * calculated to Set.
  */
 @Component({
-  selector: 'app-dimensioned-image-crop',
+  selector: 'dimensioned-image-crop',
   templateUrl: './dimensioned-image-crop.component.html',
   styleUrls: ['./dimensioned-image-crop.component.css'],
   entryComponents: [ImageCropComponent]

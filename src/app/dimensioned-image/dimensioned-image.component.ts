@@ -3,7 +3,7 @@ import { Image, Mask } from '../models';
 
 
 @Component({
-  selector: 'app-dimensioned-image',
+  selector: 'dimensioned-image',
   templateUrl: './dimensioned-image.component.html',
   styleUrls: ['./dimensioned-image.component.css']
 })

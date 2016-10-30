@@ -4,7 +4,7 @@ import { Image, Mask } from '../models';
 
 
 @Component({
-  selector: 'app-image-crop',
+  selector: 'image-crop',
   templateUrl: './image-crop.component.html',
   styleUrls: ['./image-crop.component.css']
 })
