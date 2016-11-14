@@ -23,9 +23,9 @@ export class ImageCropComponent {
   @Input() mask: Mask;
   @Input() image: Image;
 
-  @HostListener('keyup', ['$event'])
+  @HostListener('document:keyup', ['$event'])
   protected onKey(event: KeyboardEvent): void {
-      if (event.srcElement && event.srcElement.className === 'display') {
+      if (event.srcElement && event.srcElement.classList.contains('display')) {
         // TODO find a way to only supply key events when display element has focus
         event.stopPropagation();
         event.preventDefault();
