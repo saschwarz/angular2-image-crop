@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';import 'hammerjs';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import 'hammerjs';
 import 'hammer-timejs';
+
 import { Image, Mask } from '../models';
 
 
@@ -78,27 +80,10 @@ export class ImageCropComponent {
     this.image.rotation = Math.floor(degrees) % 360;
   }
 
-  protected onRotateBy(event: any, degrees: number): void {
-    event.preventDefault();
-    this.image.rotation = Math.floor(this.image.rotation + degrees) % 360;
-  }
-
+  // used by hammer rotate gesture
   protected onRotate(event: any): void {
     event.preventDefault();
     this.rotateTo(event.rotation - this.startRotation);
-  }
-
-  protected onPanRotateStart(event: any): void {
-    // pan up/down on compass element rotates
-    event.preventDefault();
-    this.startRotation = this.image.rotation;
-    this.startY = event.deltaY;
-  }
-
-  protected onPanRotate(event: any): void {
-    // pan up/down on compass element rotates
-    event.preventDefault();
-    this.rotateTo((event.deltaY - this.startY) / 4 + this.startRotation);
   }
 
   protected onPinch(event: any): void {

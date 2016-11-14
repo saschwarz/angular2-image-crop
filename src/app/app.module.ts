@@ -10,6 +10,7 @@ import { DimensionedImageCropComponent } from './dimensioned-image-crop/dimensio
 import { CroppedImageComponent } from './cropped-image/cropped-image.component';
 import { DimensionedCroppedImageComponent } from './dimensioned-cropped-image/dimensioned-cropped-image.component';
 import { GridImageComponent } from './grid-image/grid-image.component';
+import { RotatorComponent } from './rotator/rotator.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GridImageComponent } from './grid-image/grid-image.component';
     DimensionedImageCropComponent,
     CroppedImageComponent,
     DimensionedCroppedImageComponent,
-    GridImageComponent
+    GridImageComponent,
+    RotatorComponent
   ],
   imports: [
     BrowserModule,
