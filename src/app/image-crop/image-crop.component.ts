@@ -52,12 +52,6 @@ export class ImageCropComponent {
     event.preventDefault();
   }
 
-  protected onGestureStart(event: any): void {
-    event.preventDefault();
-    this.startMaskHeight = this.mask.height;
-    this.startMaskWidth = this.mask.width;
-  }
-
   protected onPan(event: any): void {
     this.mask.x = event.x;
     this.mask.y = event.y;
@@ -73,9 +67,8 @@ export class ImageCropComponent {
     this.rotateTo(event.rotation - this.startRotation);
   }
 
-  protected onPinch(event: any): void {
-    event.preventDefault();
-    this.mask.height = Math.floor(this.startMaskHeight * event.scale);
-    this.mask.width = Math.floor(this.startMaskWidth * event.scale);
+  protected onSizeChange(event: any): void {
+    this.mask.height = event.height;
+    this.mask.width = event.width;
   }
 }

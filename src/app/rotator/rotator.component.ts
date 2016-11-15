@@ -1,5 +1,3 @@
-import 'hammerjs';
-import 'hammer-timejs';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 

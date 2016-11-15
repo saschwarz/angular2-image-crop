@@ -15,6 +15,7 @@ import { DimensionedCroppedImageComponent } from './dimensioned-cropped-image/di
 import { GridImageComponent } from './grid-image/grid-image.component';
 import { RotatorComponent } from './rotator/rotator.component';
 import { DragMoveDirective } from './dragmove.directive';
+import { PinchResizeDirective } from './pinchresize.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DragMoveDirective } from './dragmove.directive';
     DimensionedCroppedImageComponent,
     GridImageComponent,
     RotatorComponent,
-    DragMoveDirective
+    DragMoveDirective,
+    PinchResizeDirective
   ],
   imports: [
     BrowserModule,
