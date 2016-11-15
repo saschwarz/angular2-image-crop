@@ -1,6 +1,4 @@
 import { Component, ElementRef, HostListener, Input } from '@angular/core';
-import 'hammerjs';
-import 'hammer-timejs';
 
 import { Image, Mask } from '../models';
 
@@ -56,20 +54,13 @@ export class ImageCropComponent {
 
   protected onGestureStart(event: any): void {
     event.preventDefault();
-    // hammerjs events give deltas since start of gesture so
-    // capture the initial values so I can apply the deltas for
-    // each event and update the view.
-    this.startX = this.mask.x;
-    this.startY = this.mask.y;
-    this.startRotation = Math.floor(parseInt(<string><any>event.rotation, 10) - parseInt(<string><any>this.image.rotation, 10)) % 360;
     this.startMaskHeight = this.mask.height;
     this.startMaskWidth = this.mask.width;
   }
 
   protected onPan(event: any): void {
-    event.preventDefault();
-    this.mask.x = this.startX + event.deltaX;
-    this.mask.y = this.startY + event.deltaY;
+    this.mask.x = event.x;
+    this.mask.y = event.y;
   }
 
   protected rotateTo(degrees: number): void {
