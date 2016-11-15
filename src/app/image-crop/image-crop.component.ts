@@ -18,38 +18,34 @@ export class ImageCropComponent {
   private startMaskWidth: number;
   private startMaskHeight: number;
 
-  // @ViewChild('display') display: ElementRef;
-
   @Input() mask: Mask;
   @Input() image: Image;
 
-  @HostListener('document:keyup', ['$event'])
+  @HostListener('keyup', ['$event'])
   protected onKey(event: KeyboardEvent): void {
-      if (event.srcElement && event.srcElement.classList.contains('display')) {
-        // TODO find a way to only supply key events when display element has focus
-        event.stopPropagation();
-        event.preventDefault();
-        let delta = event.shiftKey ? 10 : 1;
-        switch (event.code) {
-          case 'ArrowLeft':
-            this.mask.x -= delta;
-            break;
-          case 'ArrowRight':
-            this.mask.x += delta;
-            break;
-          case 'ArrowDown':
-            this.mask.y += delta;
-            break;
-          case 'ArrowUp':
-            this.mask.y -= delta;
-            break;
-          case 'Equal':
-            this.image.rotation += delta;
-            break;
-          case 'Minus':
-            this.image.rotation -= delta;
-            break;
-        }
+      // only exercised when the element has focus
+      event.stopPropagation();
+      event.preventDefault();
+      let delta = event.shiftKey ? 10 : 1;
+      switch (event.code) {
+        case 'ArrowLeft':
+          this.mask.x -= delta;
+          break;
+        case 'ArrowRight':
+          this.mask.x += delta;
+          break;
+        case 'ArrowDown':
+          this.mask.y += delta;
+          break;
+        case 'ArrowUp':
+          this.mask.y -= delta;
+          break;
+        case 'Equal':
+          this.image.rotation += delta;
+          break;
+        case 'Minus':
+          this.image.rotation -= delta;
+          break;
       }
   }
 
