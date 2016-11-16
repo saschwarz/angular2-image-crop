@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 
 import { Image, Mask } from '../models';
 
@@ -9,13 +9,6 @@ import { Image, Mask } from '../models';
   styleUrls: ['./image-crop.component.css']
 })
 export class ImageCropComponent {
-  // pan/rotate event book keeping
-  private startX: number;
-  private startY: number;
-  private startRotation: number = 0;
-  private startMaskWidth: number;
-  private startMaskHeight: number;
-
   @Input() mask: Mask;
   @Input() image: Image;
 
@@ -59,12 +52,6 @@ export class ImageCropComponent {
 
   protected rotateTo(degrees: number): void {
     this.image.rotation = Math.floor(degrees) % 360;
-  }
-
-  // used by hammer rotate gesture
-  protected onRotate(event: any): void {
-    event.preventDefault();
-    this.rotateTo(event.rotation - this.startRotation);
   }
 
   protected onSizeChange(event: any): void {
