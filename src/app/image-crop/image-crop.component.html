@@ -7,11 +7,9 @@
 					<rect x="0" y="0" attr.width="{{image.width}}" attr.height="{{image.width}}" opacity="0.2" fill="white" />
 				</mask>
 			</defs>
-			<g mask="url(#image-crop-mask)" dragmove [x]="mask.x" [y]="mask.y" (locationChange)="onPan($event)" pinchresize [attr.width]="mask.width" [attr.height]="mask.height" (sizeChange)="onSizeChange($event)">
-				<image class="image" attr.height="{{image.height}}" attr.width="{{image.width}}" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})"
-					[attr.xlink:href]="image.url" preventDefault />
-				<rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" stroke="red" stroke-width="3"
-					fill="none" />
+			<g mask="url(#image-crop-mask)" pinchresize [attr.width]="mask.width" [attr.height]="mask.height" (sizeChange)="onSizeChange($event)">
+				<image class="image" attr.height="{{image.height}}" attr.width="{{image.width}}" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})" [attr.xlink:href]="image.url" preventDefault />
+				<rect class="masked-area" dragmove [x]="mask.x" [y]="mask.y" (locationChange)="onPan($event)" attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" stroke="red" stroke-width="3" fill="black" fill-opacity="0"/>
 			</g>
 			<g rotator [rotation]="image.rotation" (rotationChange)="rotateTo($event)"></g>
 		</svg>
