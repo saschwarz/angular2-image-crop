@@ -14,8 +14,9 @@ import { CroppedImageComponent } from './cropped-image/cropped-image.component';
 import { DimensionedCroppedImageComponent } from './dimensioned-cropped-image/dimensioned-cropped-image.component';
 import { GridImageComponent } from './grid-image/grid-image.component';
 import { RotatorComponent } from './rotator/rotator.component';
-import { DragMoveDirective } from './dragmove.directive';
-import { PinchResizeDirective } from './pinchresize.directive';
+import { DragMoveDirective } from './drag-move.directive';
+import { PinchResizeDirective } from './pinch-resize.directive';
+import { MouseDownPreventDefaultDirective } from './mouse-down-prevent-default.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PinchResizeDirective } from './pinchresize.directive';
     GridImageComponent,
     RotatorComponent,
     DragMoveDirective,
-    PinchResizeDirective
+    PinchResizeDirective,
+    MouseDownPreventDefaultDirective
   ],
   imports: [
     BrowserModule,
