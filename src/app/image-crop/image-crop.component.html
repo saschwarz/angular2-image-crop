@@ -1,6 +1,6 @@
 <div class="image-crop">
-	<div class="display svg-container" tabindex="0">
-		<svg version="1.1" class="mask svg-content" attr.width="100%" attr.height="100%" attr.viewBox="0 0 {{image.width}} {{image.height}}">
+	<div class="display svg-content" tabindex="0">
+		<svg version="1.1" class="mask svg-content" attr.width="100%" attr.height="100%" attr.viewBox="0 0 {{image.width}} {{image.height}}" [style.height.px]="image.height">
 			<defs>
 				<mask id="image-crop-mask" clipPathUnits="objectBoundingBox">
 					<rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white" />
@@ -11,7 +11,9 @@
 				<image class="image" attr.height="{{image.height}}" attr.width="{{image.width}}" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})" [attr.xlink:href]="image.url" preventDefault />
 				<rect class="masked-area" dragmove [x]="mask.x" [y]="mask.y" (locationChange)="onPan($event)" attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" stroke="red" stroke-width="3" fill="black" fill-opacity="0"/>
 			</g>
-			<g rotator [rotation]="image.rotation" (rotationChange)="rotateTo($event)"></g>
 		</svg>
+	</div>
+	<div class="rotator svg-content">
+		<rotator [rotation]="image.rotation" (rotationChange)="rotateTo($event)" [attr.height]="image.height"></rotator>
 	</div>
 </div>

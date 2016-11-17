@@ -1,28 +1,10 @@
-.image-crop .display {
+.image-crop {
     width: 100%;
     display: flex;
-    justify-content: center;
 }
 .image-crop .mask {
     border: 1px solid black;
 }
-.pan-rotate {
-    z-index: 100;
-}
-.svg-container {
-    display: inline-block;
-	position: relative;
-	width: 100%;
-	padding-bottom: 100%;
-	vertical-align: middle;
-	overflow: hidden;
-}
-.svg-content {
-	display: inline-block;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-.masked-area {
+.masked-area, .rotator {
 	cursor: pointer;
 }

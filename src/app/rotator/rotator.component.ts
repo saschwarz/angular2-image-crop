@@ -3,12 +3,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   // attribute selector not element selector otherwise invalid SVG is generated
-  selector: '[rotator]',
+  selector: 'rotator',
   templateUrl: './rotator.component.html',
   styleUrls: ['./rotator.component.css']
 })
 export class RotatorComponent {
   @Input() rotation;
+  @Input('attr.height') height;
   @Output() rotationChange = new EventEmitter<number>();
 
   private startRotation = 0;

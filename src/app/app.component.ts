@@ -10,14 +10,14 @@ import { Dimensions, DimensionedImage, Grid, Image, Mask, Units } from './models
 export class AppComponent {
   title = 'Angular 2 Image Crop UI Experiment';
   mask = new Mask({
-    width: 400,
-    height: 400,
-    x: 200,
-    y: 200
+    width: 200,
+    height: 200,
+    x: 100,
+    y: 100
   });
   image = new Image({
-    width: 800,
-    height: 800,
+    width: 400,
+    height: 400,
     rotation: 0,
     url: 'assets/flatiron.jpeg'
   });
