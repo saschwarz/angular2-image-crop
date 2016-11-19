@@ -17,6 +17,7 @@ import { RotatorComponent } from './rotator/rotator.component';
 import { DragMoveDirective } from './drag-move.directive';
 import { PinchResizeDirective } from './pinch-resize.directive';
 import { MouseDownPreventDefaultDirective } from './mouse-down-prevent-default.directive';
+import { LocateTouchDirective } from './locate-touch.directive';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MouseDownPreventDefaultDirective } from './mouse-down-prevent-default.d
     RotatorComponent,
     DragMoveDirective,
     PinchResizeDirective,
-    MouseDownPreventDefaultDirective
+    MouseDownPreventDefaultDirective,
+    LocateTouchDirective
   ],
   imports: [
     BrowserModule,

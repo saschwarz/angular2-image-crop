@@ -7,7 +7,7 @@ import { ImageCropComponent } from '../image-crop/image-crop.component';
  * displayed at the same scale. The displayed size of the component
  * is responsive or can fixed by specified by suplying width/height
  * attributes and the displayed size of the mask/image are then
- * calculated to Set.
+ * calculated to match.
  */
 @Component({
   selector: 'dimensioned-image-crop',
@@ -15,7 +15,7 @@ import { ImageCropComponent } from '../image-crop/image-crop.component';
   styleUrls: ['./dimensioned-image-crop.component.css'],
   entryComponents: [ImageCropComponent]
 })
-export class DimensionedImageCropComponent implements OnInit, AfterViewInit {
+export class DimensionedImageCropComponent implements AfterViewInit {
   // Set the size of the mask in units instead of in pixels.
   //
   @Input() mask: DimensionedImage;
@@ -35,12 +35,6 @@ export class DimensionedImageCropComponent implements OnInit, AfterViewInit {
   @Input() useMask: boolean = false;
 
   @ViewChild('wrapper') private wrapper: ElementRef;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   public ngAfterViewInit(): void {
     /* Scale image/mask */

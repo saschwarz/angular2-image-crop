@@ -21,4 +21,21 @@ export class DimensionedCroppedImageComponent {
    */
   @Input() mask: DimensionedImage;
   @Input() image: DimensionedImage;
+
+  private currentX: number = 0;
+  private currentY: number = 0;
+
+  protected showLocation(event: any): void {
+    console.log([event.x, event.y])
+    this.currentX = event.x;
+    this.currentY = event.y;
+  }
+
+  displayX() {
+    return (this.currentX - this.mask.dimensions.x).toFixed(1);
+  }
+
+  displayY() {
+    return (this.currentY - this.mask.dimensions.y).toFixed(1);
+  }
 }

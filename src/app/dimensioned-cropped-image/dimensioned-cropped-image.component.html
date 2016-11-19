@@ -6,9 +6,14 @@
 					fill="white" />
 			</mask>
 		</defs>
-		<g mask="url(#dimensioned-cropped-image-mask)" attr.transform="translate({{-mask.dimensions.x}} {{-mask.dimensions.y}})">
+		<g mask="url(#dimensioned-cropped-image-mask)" attr.transform="translate({{-mask.dimensions.x}} {{-mask.dimensions.y}})" locate-touch (locationChange)="showLocation($event)">
 			<image [attr.width]="image.dimensions.width" [attr.height]="image.dimensions.height" attr.transform="rotate({{image.image.rotation}} {{image.dimensions.width/2}} {{image.dimensions.height/2}})"
 				[attr.xlink:href]="image.image.url" attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}"/>
+			<line attr.x1="{{currentX-2}}" attr.x2="{{currentX+2}}" attr.y1="{{currentY}}" attr.y2="{{currentY}}" stroke="blue" stroke-width="0.2" fill="blue"/>
+			<line attr.x1="{{currentX}}" attr.x2="{{currentX}}" attr.y1="{{currentY-2}}" attr.y2="{{currentY+2}}" stroke="blue" stroke-width="0.2" fill="blue"/>
+			<text [attr.x]="currentX" [attr.y]="currentY" dx="2" dy="-2" font-size="3" font-family="monospace" stroke="blue" fill="blue" stroke-width="0.2">
+				{{displayX()}}, {{displayY()}}
+			</text>
 		</g>
 	</svg>
 </div>
