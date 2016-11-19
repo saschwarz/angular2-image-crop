@@ -9,13 +9,6 @@ export class LocateTouchDirective implements AfterContentInit {
 
   @Output() locationChange = new EventEmitter<any>();
   private pt;
-  private startX;
-  private startY;
-
-  @HostListener('panstart', ['$event']) protected onPanStart(event) {
-    event.preventDefault();
-    console.log(event);
-  }
 
   @HostListener('panmove', ['$event']) protected onPanMove(event) {
     event.preventDefault();
@@ -26,8 +19,8 @@ export class LocateTouchDirective implements AfterContentInit {
       this.pt.y = event.srcEvent.clientY;
     } else {
       // touch event
-      this.pt.x = event.srcEvent.clientX;
-      this.pt.y = event.srcEvent.clientY;
+      this.pt.x = event.srcEvent.targetTouches[0].clientX;
+      this.pt.y = event.srcEvent.targetTouches[0].clientY;
     }
     let location = this.pt.matrixTransform(this.elementRef.nativeElement.getScreenCTM().inverse());
     // console.log(location);

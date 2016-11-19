@@ -26,11 +26,14 @@ export class DimensionedCroppedImageComponent {
   private currentY: number = 0;
 
   protected showLocation(event: any): void {
-    console.log([event.x, event.y])
+    // this is location relative to mask origin but NOT offset
+    // by mask.dimensions.[x|y] since we display cursor
+    // relative to origin.
     this.currentX = event.x;
     this.currentY = event.y;
   }
 
+  // numeric representation in mask units
   displayX() {
     return (this.currentX - this.mask.dimensions.x).toFixed(1);
   }
