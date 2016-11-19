@@ -1,0 +1,7 @@
+.location {
+    fill: transparent;
+}
+.location:hover {
+    cursor: pointer;
+    border: 1px solid blue;
+}
