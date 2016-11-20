@@ -35,10 +35,10 @@ export class DimensionedCroppedImageComponent {
 
   // numeric representation in mask units
   displayX() {
-    return (this.currentX - this.mask.dimensions.x).toFixed(1);
+    return this.mask.dimensions.displayValue(this.currentX);
   }
 
   displayY() {
-    return (this.currentY - this.mask.dimensions.y).toFixed(1);
+    return this.mask.dimensions.displayValue(this.currentY);
   }
 }

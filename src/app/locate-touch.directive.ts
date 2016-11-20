@@ -20,7 +20,6 @@ export class LocateTouchDirective implements AfterContentInit {
 
   private handler(event) {
     event.preventDefault();
-    // console.log(event);
     if (event.srcEvent.clientX) {
       // mouse event
       this.pt.x = event.srcEvent.clientX;
@@ -31,7 +30,6 @@ export class LocateTouchDirective implements AfterContentInit {
       this.pt.y = event.srcEvent.targetTouches[0].clientY;
     }
     let location = this.pt.matrixTransform(this.elementRef.nativeElement.getScreenCTM().inverse());
-    // console.log(location);
     this.locationChange.emit({x: location.x, y: location.y});
   }
 
@@ -39,7 +37,7 @@ export class LocateTouchDirective implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    // TODO search up for SVG element instead of assuming this is immediate child element.
+    // TODO search up for svg element instead of assuming this is an immediate child element of <svg>.
     // http://stackoverflow.com/a/21346747/457935
     this.pt = this.elementRef.nativeElement.parentElement.createSVGPoint();
   }

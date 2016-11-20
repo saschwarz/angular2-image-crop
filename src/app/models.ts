@@ -44,29 +44,47 @@ export class Mask extends Image {
 }
 
 /**
+ * Origin locations
+ */
+export enum HorizontalOrigin {
+    left,
+    center,
+    right
+}
+
+export enum VerticalOrigin {
+    top,
+    center,
+    bottom
+}
+
+/**
  * Actual units represented by the Image/Mask.
  * To support conversions.
  */
 export enum Units {
-    inches,
     feet,
     meters
 }
 
 /**
- * The relative location and size of an Image or Mask
+ * The location and size of an Image or Mask relative to it's container's origin.
  */
 export class Dimensions {
     /**
      * Units for all dimension attributes.
      */
     units: Units = Units.meters;
+
+    xOrigin: HorizontalOrigin = HorizontalOrigin.left;
+    yOrigin: VerticalOrigin = VerticalOrigin.top;
+
     /**
-     * X location in units.
+     * X location in units from origin of it's container (if any).
      */
     x: number = 0;
     /**
-     * Y location in units.
+     * Y location in units from origin of it's container (if any).
      */
     y: number = 0;
     /**
@@ -84,6 +102,22 @@ export class Dimensions {
         this.height = height;
         this.x = x;
         this.y = y;
+    }
+
+    displayValue(x: number): string {
+        let display = '';
+        switch (this.units) {
+            case Units.meters:
+                display = x.toFixed(1) + 'm';
+                break;
+            case Units.feet:
+                // feet' inches"
+                let feet = Math.trunc(x / 12);
+                let inches = Math.trunc(x % 12) || 0;
+                display = [feet ? `${feet}'` : '', `${inches}"`].join(' ');
+                break;
+        }
+        return display;
     }
 }
 

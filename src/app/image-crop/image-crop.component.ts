@@ -40,11 +40,6 @@ export class ImageCropComponent {
       }
   }
 
-  protected preventDefault(event: any): void {
-    // required on <image> tags to stop browser standard drag behavior
-    event.preventDefault();
-  }
-
   protected onPan(event: any): void {
     this.mask.x = event.x;
     this.mask.y = event.y;

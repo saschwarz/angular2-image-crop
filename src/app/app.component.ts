@@ -34,8 +34,8 @@ export class AppComponent {
     rotation: 0,
     url: 'assets/200x200.png'
   });
-  mDims = new Dimensions({y: 50, width: 100.1, height: 100.1});
-  iDims = new Dimensions({width: 200, height: 200});
+  mDims = new Dimensions({y: 50, width: 100.1, height: 100.1, units: Units.feet});
+  iDims = new Dimensions({width: 200, height: 200, units: Units.feet});
   dImage = new DimensionedImage(this.image2, this.iDims);
   dMask = new DimensionedImage(this.mask2, this.mDims);
 }
