@@ -11,6 +11,14 @@ export class LocateTouchDirective implements AfterContentInit {
   private pt;
 
   @HostListener('panmove', ['$event']) protected onPanMove(event) {
+    this.handler(event);
+  }
+
+  @HostListener('tap', ['$event']) protected onTap(event) {
+    this.handler(event);
+  }
+
+  private handler(event) {
     event.preventDefault();
     // console.log(event);
     if (event.srcEvent.clientX) {

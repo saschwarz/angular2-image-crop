@@ -1,7 +1,15 @@
 .location {
     fill: transparent;
 }
-.location:hover {
+.location-line {
+    font-family: "monospace";
+    fill: blue;
+    stroke: blue;
+    stroke-width: 0.2;
+}
+.location:hover, .location-line:hover {
     cursor: pointer;
     border: 1px solid blue;
 }
+
+
