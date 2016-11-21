@@ -112,8 +112,8 @@ export class Dimensions {
                 break;
             case Units.feet:
                 // feet' inches"
-                let feet = Math.trunc(x / 12);
-                let inches = Math.trunc(x % 12) || 0;
+                let feet = Math.trunc(x);
+                let inches = Math.trunc((x - feet) * 12);
                 display = [feet ? `${feet}'` : '', `${inches}"`].join(' ');
                 break;
         }
