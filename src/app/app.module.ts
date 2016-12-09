@@ -8,16 +8,16 @@ import 'hammerjs';
 import 'hammer-timejs';
 
 import { AppComponent } from './app.component';
-import { ImageCropComponent } from './image-crop/image-crop.component';
-import { DimensionedImageCropComponent } from './dimensioned-image-crop/dimensioned-image-crop.component';
-import { CroppedImageComponent } from './cropped-image/cropped-image.component';
-import { DimensionedCroppedImageComponent } from './dimensioned-cropped-image/dimensioned-cropped-image.component';
-import { GridImageComponent } from './grid-image/grid-image.component';
-import { RotatorComponent } from './rotator/rotator.component';
-import { DragMoveDirective } from './drag-move.directive';
-import { PinchResizeDirective } from './pinch-resize.directive';
-import { MouseDownPreventDefaultDirective } from './mouse-down-prevent-default.directive';
-import { LocateTouchDirective } from './locate-touch.directive';
+import { ImageCropComponent } from '../lib/image-crop/image-crop.component';
+import { DimensionedImageCropComponent } from '../lib/dimensioned-image-crop/dimensioned-image-crop.component';
+import { CroppedImageComponent } from '../lib/cropped-image/cropped-image.component';
+import { DimensionedCroppedImageComponent } from '../lib/dimensioned-cropped-image/dimensioned-cropped-image.component';
+import { GridImageComponent } from '../lib/grid-image/grid-image.component';
+import { RotatorComponent } from '../lib/rotator/rotator.component';
+import { DragMoveDirective } from '../lib/drag-move.directive';
+import { PinchResizeDirective } from '../lib/pinch-resize.directive';
+import { MouseDownPreventDefaultDirective } from '../lib/mouse-down-prevent-default.directive';
+import { LocateTouchDirective } from '../lib/locate-touch.directive';
 
 @NgModule({
   declarations: [

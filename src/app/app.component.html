@@ -109,7 +109,7 @@
 					<label>Height</label><input type="text" [(ngModel)]="dMask.image.height" class="u-full-width" />
 				</div>
 				<div class="four columns">
-					<label>Units {{dMask.dimensions.units}}</label>
+					<label>Units</label>
 					<select [(ngModel)]="dMask.dimensions.units" (ngModelChange)="changeUnits($event)">
 						<option *ngFor="let unit of unitValues" [value]="unit">{{units[unit]}}</option>
 					</select>

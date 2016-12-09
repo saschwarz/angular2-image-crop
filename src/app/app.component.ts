@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Dimensions, DimensionedImage, Grid, Image, Mask, Units } from './models';
+import { Dimensions, DimensionedImage, Grid, Image, Mask, Units } from '../lib/models';
 
 
 @Component({
