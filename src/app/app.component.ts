@@ -38,4 +38,16 @@ export class AppComponent {
   iDims = new Dimensions({width: 200, height: 200, units: Units.feet});
   dImage = new DimensionedImage(this.image2, this.iDims);
   dMask = new DimensionedImage(this.mask2, this.mDims);
+  units = Units;
+  unitValues = [];
+
+  constructor() {
+    this.unitValues = Object.keys(this.units).filter(x => !isNaN(parseInt(x, 10)) );
+  }
+
+  changeUnits(event): void {
+    // select list returns string and we want to set mask's dimensioned units
+    // to enum number
+    this.dMask.dimensions.units = parseInt(event, 10);
+  }
 }
