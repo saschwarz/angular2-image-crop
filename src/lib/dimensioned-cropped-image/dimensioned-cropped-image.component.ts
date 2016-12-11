@@ -22,6 +22,9 @@ export class DimensionedCroppedImageComponent {
   @Input() mask: DimensionedImage;
   @Input() image: DimensionedImage;
 
+  // Need to get location relative to this element
+  // but this element only passes along the location to it's child
+  // CrossHairComponent for display it's never used in this class.
   private currentX: number = 0;
   private currentY: number = 0;
 
@@ -31,14 +34,5 @@ export class DimensionedCroppedImageComponent {
     // relative to origin.
     this.currentX = event.x;
     this.currentY = event.y;
-  }
-
-  // numeric representation in mask units
-  displayX() {
-    return this.mask.dimensions.displayValue(this.currentX);
-  }
-
-  displayY() {
-    return this.mask.dimensions.displayValue(this.currentY);
   }
 }
