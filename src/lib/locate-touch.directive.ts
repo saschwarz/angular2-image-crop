@@ -38,7 +38,7 @@ export class LocateTouchDirective implements AfterContentInit {
 
   ngAfterContentInit(): void {
     // TODO search up for svg element instead of assuming this is an immediate child element of <svg>.
-    // http://stackoverflow.com/a/21346747/457935
+    // Use SVGPoint to transform locations: http://stackoverflow.com/a/21346747/457935
     this.pt = this.elementRef.nativeElement.parentElement.createSVGPoint();
   }
 

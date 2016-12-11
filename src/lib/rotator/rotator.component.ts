@@ -9,11 +9,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class RotatorComponent {
   @Input() rotation;
-  @Input('attr.height') height;
+  @Input('attr.height') height: number;
   @Output() rotationChange = new EventEmitter<number>();
 
-  private startRotation = 0;
-  private startY = 0;
+  private startRotation: number = 0;
+  private startY: number = 0;
 
   protected onPanRotateStart(event: any): void {
     // pan up/down on compass element rotates
@@ -33,10 +33,5 @@ export class RotatorComponent {
     // don't want select action on mousedown/double click
     event.preventDefault();
     this.rotationChange.emit(Math.floor(this.rotation + degrees) % 360);
-  }
-
-  protected preventDefault(event: any): void {
-    // required on <image> tags to stop browser standard drag behavior
-    event.preventDefault();
   }
 }

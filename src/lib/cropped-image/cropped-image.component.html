@@ -6,7 +6,7 @@
             </mask>
         </defs>
         <g mask="url(#cropped-image-mask)" attr.transform="translate({{-mask.x}} {{-mask.y}})">
-            <image [attr.width]="image.width" [attr.height]="image.height" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})" [attr.xlink:href]="image.url"/>
+            <image preventDefault [attr.width]="image.width" [attr.height]="image.height" attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})" [attr.xlink:href]="image.url"/>
         </g>
     </svg>
 </div>

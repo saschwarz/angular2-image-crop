@@ -4,12 +4,12 @@ import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/c
   selector: '[dragmove]'
 })
 export class DragMoveDirective {
-  @Input() x;
-  @Input() y;
+  @Input() x: number;
+  @Input() y: number;
   @Output() locationChange = new EventEmitter<any>();
 
-  private startX = 0;
-  private startY = 0;
+  private startX: number = 0;
+  private startY: number = 0;
 
   @HostListener('panstart', ['$event']) protected onPanStart(event) {
     event.preventDefault();
