@@ -6,8 +6,8 @@
 			</mask>
 		</defs>
 		<g mask="url(#dimensioned-cropped-image-mask)" locate-touch (locationChange)="showLocation($event)">
-			<image [attr.width]="image.dimensions.width" [attr.height]="image.dimensions.height" attr.transform="rotate({{image.image.rotation}} {{image.dimensions.width/2}} {{image.dimensions.height/2}})"
-				[attr.xlink:href]="image.image.url" attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}" preventDefault/>
+			<image preventDefault [attr.xlink:href]="image.image.url" [attr.width]="image.dimensions.width" [attr.height]="image.dimensions.height" attr.transform="rotate({{image.image.rotation}} {{image.dimensions.width/2}} {{image.dimensions.height/2}})"
+				 attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}"/>
 			<g crossHair [attr.x]="currentX" [attr.y]="currentY" [attr.dimensions]="mask.dimensions"></g>
 		</g>
 	</svg>
