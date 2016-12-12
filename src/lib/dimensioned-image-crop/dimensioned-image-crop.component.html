@@ -7,7 +7,7 @@
 					<rect x="0" y="0" attr.width="{{image.dimensions.width}}" attr.height="{{image.dimensions.width}}" opacity="0.2" fill="white" />
 				</mask>
 			</defs>
-			<g mask="url(#dimensioned-image-crop-mask)" pinchresize [attr.width]="mask.dimensions.width" [attr.height]="mask.dimensions.height" (sizeChange)="onSizeChange($event)">
+			<g mask="url(#dimensioned-image-crop-mask)" pinchresize [attr.width]="mask.dimensions.width" [attr.height]="mask.dimensions.height">
 				<image class="image" attr.height="{{image.dimensions.height}}" attr.width="{{image.dimensions.width}}" attr.transform="rotate({{image.image.rotation}} {{image.dimensions.width/2}} {{image.dimensions.height/2}})" [attr.xlink:href]="image.image.url" preventDefault />
 				<rect class="masked-area" dragmove [x]="mask.dimensions.x" [y]="mask.dimensions.y" (locationChange)="onPan($event)" attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" fill="black" fill-opacity="0"/>
 			</g>

@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { DimensionedImage } from '../models';
 import { ImageCropComponent } from '../image-crop/image-crop.component';
 
@@ -19,11 +19,41 @@ export class DimensionedImageCropComponent implements AfterViewChecked {
   private viewHeight: number = 0;
 
   public ngAfterViewChecked(): void {
-    // only set once
-    if (!this.viewHeight) {
-      setTimeout(() => this.viewHeight = this.display.nativeElement.offsetHeight, 0);
+    if (this.viewHeight != this.display.nativeElement.clientHeight) {
+      // don't take full height or end up in endless loop as parent container
+      // resizes and this is called again and again.
+      setTimeout(() => this.viewHeight = this.display.nativeElement.clientHeight - 10, 0);
     }
   }
+
+  @HostListener('keyup', ['$event'])
+  protected onKey(event: KeyboardEvent): void {
+      // only exercised when the element has focus
+      event.stopPropagation();
+      event.preventDefault();
+      let delta = event.shiftKey ? 10 : 1;
+      switch (event.code) {
+        case 'ArrowLeft':
+          this.mask.dimensions.x -= delta;
+          break;
+        case 'ArrowRight':
+          this.mask.dimensions.x += delta;
+          break;
+        case 'ArrowDown':
+          this.mask.dimensions.y += delta;
+          break;
+        case 'ArrowUp':
+          this.mask.dimensions.y -= delta;
+          break;
+        case 'Equal':
+          this.image.image.rotation += delta;
+          break;
+        case 'Minus':
+          this.image.image.rotation -= delta;
+          break;
+      }
+  }
+
   protected onPan(event: any): void {
     this.mask.dimensions.x = event.x;
     this.mask.dimensions.y = event.y;
@@ -31,10 +61,5 @@ export class DimensionedImageCropComponent implements AfterViewChecked {
 
   protected rotateTo(degrees: number): void {
     this.image.image.rotation = Math.floor(degrees) % 360;
-  }
-
-  protected onSizeChange(event: any): void {
-    this.mask.image.height = event.height;
-    this.mask.image.width = event.width;
   }
 }
