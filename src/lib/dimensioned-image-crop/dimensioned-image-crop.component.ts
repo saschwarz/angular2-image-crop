@@ -13,32 +13,45 @@ import { ImageCropComponent } from '../image-crop/image-crop.component';
   selector: 'dimensioned-image-crop',
   templateUrl: './dimensioned-image-crop.component.html',
   styleUrls: ['./dimensioned-image-crop.component.css'],
-  entryComponents: [ImageCropComponent]
+  // entryComponents: [ImageCropComponent]
 })
 export class DimensionedImageCropComponent implements AfterViewInit {
   // Set the size of the mask in units instead of in pixels.
   //
   @Input() mask: DimensionedImage;
   @Input() image: DimensionedImage;
-  /**
-   * Optional width of component.
-   */
-  @Input() width: number;
-  /**
-   * Optional height of the component.
-   */
-  @Input() height: number;
-  /**
-   * Set width/height to mask's width/height. Otherwise
-   * sets width/height to image's width/height.
-   */
-  @Input() useMask: boolean = false;
+  // /**
+  //  * Optional width of component.
+  //  */
+  // @Input() width: number;
+  // /**
+  //  * Optional height of the component.
+  //  */
+  // @Input() height: number;
+  // /**
+  //  * Set width/height to mask's width/height. Otherwise
+  //  * sets width/height to image's width/height.
+  //  */
+  // @Input() useMask: boolean = false;
 
-  @ViewChild('wrapper') private wrapper: ElementRef;
+  // @ViewChild('wrapper') private wrapper: ElementRef;
 
   public ngAfterViewInit(): void {
     /* Scale image/mask */
-    console.log(this.wrapper);
-    let bb = this.wrapper.nativeElement.getBoundingClientRect();
+    // console.log(this.wrapper);
+    // let bb = this.wrapper.nativeElement.getBoundingClientRect();
+  }
+  protected onPan(event: any): void {
+    this.mask.dimensions.x = event.x;
+    this.mask.dimensions.y = event.y;
+  }
+
+  protected rotateTo(degrees: number): void {
+    this.image.image.rotation = Math.floor(degrees) % 360;
+  }
+
+  protected onSizeChange(event: any): void {
+    this.mask.image.height = event.height;
+    this.mask.image.width = event.width;
   }
 }

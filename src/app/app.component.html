@@ -13,6 +13,7 @@
 	<ul>
 		<li>One finger Pan/Drag to position image.</li>
 		<li>Two finger rotate to rotate image.</li>
+		<li>One finger Pan/Drag on dial to rotate image</li>
 		<li>Two finger pinch in/out to scale size of cropped area</li>
 	</ul>
 	<div class="row">
@@ -55,7 +56,57 @@
 <div class="section">
 	<h2>Cropped Image</h2>
 	<p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image.</p>
-	<cropped-image [mask]="mask" [image]="image"></cropped-image>
+	<dimensioned-image-crop [mask]="dMask" [image]="dImage"></dimensioned-image-crop>
+	<div class="controls">
+		<fieldset>
+			<legend>Mask</legend>
+			<div class="row">
+				<div class="three columns">
+					<label>Width</label><input type="text" [(ngModel)]="dMask.width" class="u-full-width" />
+				</div>
+				<div class="three columns">
+					<label>Height</label><input type="text" [(ngModel)]="dMask.height" class="u-full-width" />
+				</div>
+				<div class="three columns">
+					<label>Translate X</label><input type="text" [(ngModel)]="dMask.x" class="u-full-width" />
+				</div>
+				<div class="three columns">
+					<label>Translate Y</label><input type="text" [(ngModel)]="dMask.y" class="u-full-width" />
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Image</legend>
+			<div class="row">
+				<div class="four columns">
+					<label>Width</label><input type="text" [(ngModel)]="dImage.width" class="u-full-width" />
+				</div>
+				<div class="four columns">
+					<label>Height</label><input type="text" [(ngModel)]="dImage.height" class="u-full-width" />
+				</div>
+				<div class="four columns">
+					<label>Image Rotate</label><input type="text" [(ngModel)]="dImage.rotation" class="u-full-width" />
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
+<div class="section">
+	<h2>Dimensioned Image Crop - Moveable Mask Rotating Image</h2>
+	<p>Move the mask via mouse, gestures, or enter values in inputs and/or use keys:</p>
+	<ul>
+		<li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
+		<li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
+	</ul>
+	<p>Use gestures:</p>
+	<ul>
+		<li>One finger Pan/Drag to position image.</li>
+		<li>Two finger rotate to rotate image.</li>
+		<li>One finger Pan/Drag on dial to rotate image</li>
+	</ul>
+	<div class="row">
+		<image-crop class="six columns" [mask]="mask" [image]="image"></image-crop>
+	</div>
 	<div class="controls">
 		<fieldset>
 			<legend>Mask</legend>

@@ -1,4 +1,19 @@
-<div #wrapper>
-  <image-crop>
-  </image-crop>
+<div class="dimensioned-image-crop">
+	<div class="display svg-content" tabindex="0">
+		<svg version="1.1" class="mask svg-content" attr.width="100%" attr.height="100%" attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}" [style.height.px]="image.image.height">
+			<defs>
+				<mask id="dimensioned-image-crop-mask" clipPathUnits="objectBoundingBox">
+					<rect attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" fill="white" />
+					<rect x="0" y="0" attr.width="{{image.dimensions.width}}" attr.height="{{image.dimensions.width}}" opacity="0.2" fill="white" />
+				</mask>
+			</defs>
+			<g mask="url(#dimensioned-image-crop-mask)" pinchresize [attr.width]="mask.dimensions.width" [attr.height]="mask.dimensions.height" (sizeChange)="onSizeChange($event)">
+				<image class="image" attr.height="{{image.dimensions.height}}" attr.width="{{image.dimensions.width}}" attr.transform="rotate({{image.image.rotation}} {{image.dimensions.width/2}} {{image.dimensions.height/2}})" [attr.xlink:href]="image.image.url" preventDefault />
+				<rect class="masked-area" dragmove [x]="mask.dimensions.x" [y]="mask.dimensions.y" (locationChange)="onPan($event)" attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" stroke="red" stroke-width="3" fill="black" fill-opacity="0"/>
+			</g>
+		</svg>
+	</div>
+	<div class="rotator svg-content">
+		<rotator [rotation]="image.image.rotation" (rotationChange)="rotateTo($event)" [attr.height]="image.image.height"></rotator>
+	</div>
 </div>
