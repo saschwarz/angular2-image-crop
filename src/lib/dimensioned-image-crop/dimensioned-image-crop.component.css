@@ -5,6 +5,18 @@
 .dimensioned-image-crop .mask {
     border: 1px solid black;
 }
+.masked-area {
+    stroke: red;
+    stroke-width: 1px;
+}
+.display {
+    display: inline-block;
+    width: 80%;
+}
+.rotator {
+    display: inline-block;
+    width: 20%;
+}
 .masked-area, .rotator {
 	cursor: pointer;
 }

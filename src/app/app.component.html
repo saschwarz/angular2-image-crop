@@ -111,20 +111,6 @@
 		<fieldset>
 			<legend>Mask</legend>
 			<div class="row">
-				<div class="four columns">
-					<label>Width</label><input type="text" [(ngModel)]="dMask.image.width" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Height</label><input type="text" [(ngModel)]="dMask.image.height" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Units</label>
-					<select [(ngModel)]="dMask.dimensions.units" (ngModelChange)="changeUnits($event)">
-						<option *ngFor="let unit of unitValues" [value]="unit">{{units[unit]}}</option>
-					</select>
-				</div>
-			</div>
-			<div class="row">
 				<div class="three columns">
 					<label>Dimensions X</label><input type="text" [(ngModel)]="dMask.dimensions.x" class="u-full-width" />
 				</div>
