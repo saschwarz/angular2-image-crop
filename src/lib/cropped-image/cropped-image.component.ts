@@ -11,7 +11,6 @@ import { Image, Mask } from '../models';
   styleUrls: ['./cropped-image.component.css']
 })
 export class CroppedImageComponent {
-
   @Input() mask: Mask;
   @Input() image: Image;
 }

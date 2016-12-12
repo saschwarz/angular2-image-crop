@@ -2,8 +2,7 @@
 	<svg attr.width="{{mask.image.width}}" attr.height="{{mask.image.height}}" attr.viewBox="{{mask.dimensions.x}} {{mask.dimensions.y}} {{mask.dimensions.width}} {{mask.dimensions.height}}">
 		<defs>
 			<mask id="dimensioned-cropped-image-mask" clipPathUnits="objectBoundingBox">
-				<rect attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}"
-					fill="white" />
+				<rect attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" fill="white" />
 			</mask>
 		</defs>
 		<g mask="url(#dimensioned-cropped-image-mask)" locate-touch (locationChange)="showLocation($event)">
