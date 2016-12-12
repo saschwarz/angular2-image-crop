@@ -1,0 +1,10 @@
+.dimensioned-image-crop {
+    width: 100%;
+    display: flex;
+}
+.dimensioned-image-crop .mask {
+    border: 1px solid black;
+}
+.masked-area, .rotator {
+	cursor: pointer;
+}

@@ -1,6 +1,6 @@
 <div class="dimensioned-image-crop">
 	<div class="display svg-content" tabindex="0">
-		<svg version="1.1" class="mask svg-content" attr.width="100%" attr.height="100%" attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}" [style.height.px]="image.image.height">
+		<svg version="1.1" class="mask svg-content" attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}" [style.height.px]="image.image.height">
 			<defs>
 				<mask id="dimensioned-image-crop-mask" clipPathUnits="objectBoundingBox">
 					<rect attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" fill="white" />
