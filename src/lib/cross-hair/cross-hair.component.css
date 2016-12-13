@@ -1,0 +1,23 @@
+.location {
+    fill: transparent;
+}
+
+.location-line,
+.location-text {
+    font-family: "monospace";
+    fill: blue;
+    stroke: blue;
+    stroke-width: 0.2;
+}
+
+.location-text {
+    fill: white;
+    stroke: transparent;
+}
+
+.location:hover,
+.location-line:hover,
+.location-text:hover {
+    border: 1px solid blue;
+    cursor: pointer;
+}

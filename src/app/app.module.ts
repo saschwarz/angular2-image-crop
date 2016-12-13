@@ -18,7 +18,7 @@ import { DragMoveDirective } from '../lib/drag-move.directive';
 import { PinchResizeDirective } from '../lib/pinch-resize.directive';
 import { MouseDownPreventDefaultDirective } from '../lib/mouse-down-prevent-default.directive';
 import { LocateTouchDirective } from '../lib/locate-touch.directive';
-import { CrossHairComponent } from '../lib/cross-hair.component';
+import { CrossHairComponent } from '../lib/cross-hair/cross-hair.component';
 
 @NgModule({
   declarations: [
