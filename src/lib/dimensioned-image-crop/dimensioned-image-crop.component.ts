@@ -1,5 +1,5 @@
 import { AfterViewChecked, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
-import { DimensionedImage } from '../models';
+import { DimensionedCroppedImage } from '../models';
 import { ImageCropComponent } from '../image-crop/image-crop.component';
 
 /**
@@ -13,16 +13,16 @@ import { ImageCropComponent } from '../image-crop/image-crop.component';
 export class DimensionedImageCropComponent implements AfterViewChecked {
   // Set the size of the mask in units instead of in pixels.
   //
-  @Input() mask: DimensionedImage;
-  @Input() image: DimensionedImage;
+  @Input() cropped: DimensionedCroppedImage;
   @ViewChild('display') display: ElementRef;
   private viewHeight: number = 0;
 
   public ngAfterViewChecked(): void {
-    if (this.viewHeight !== this.display.nativeElement.clientHeight - 10) {
+    console.log([this.viewHeight, this.display.nativeElement.clientHeight]);
+    if (this.viewHeight !== this.display.nativeElement.clientHeight - 1) {
       // don't take full height or end up in endless loop as parent container
       // resizes and this is called again and again.
-      setTimeout(() => this.viewHeight = this.display.nativeElement.clientHeight - 10, 0);
+      setTimeout(() => this.viewHeight = this.display.nativeElement.clientHeight - 1, 0);
     }
   }
 
@@ -34,32 +34,32 @@ export class DimensionedImageCropComponent implements AfterViewChecked {
       let delta = event.shiftKey ? 10 : 1;
       switch (event.code) {
         case 'ArrowLeft':
-          this.mask.dimensions.x -= delta;
+          this.cropped.x -= delta;
           break;
         case 'ArrowRight':
-          this.mask.dimensions.x += delta;
+          this.cropped.x += delta;
           break;
         case 'ArrowDown':
-          this.mask.dimensions.y += delta;
+          this.cropped.y += delta;
           break;
         case 'ArrowUp':
-          this.mask.dimensions.y -= delta;
+          this.cropped.y -= delta;
           break;
         case 'Equal':
-          this.image.image.rotation += delta;
+          this.cropped.rotation += delta;
           break;
         case 'Minus':
-          this.image.image.rotation -= delta;
+          this.cropped.rotation -= delta;
           break;
       }
   }
 
   protected onPan(event: any): void {
-    this.mask.dimensions.x = event.x;
-    this.mask.dimensions.y = event.y;
+    this.cropped.x = event.x;
+    this.cropped.y = event.y;
   }
 
   protected rotateTo(degrees: number): void {
-    this.image.image.rotation = Math.floor(degrees) % 360;
+    this.cropped.rotation = Math.floor(degrees) % 360;
   }
 }

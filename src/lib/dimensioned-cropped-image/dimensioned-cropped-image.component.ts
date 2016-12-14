@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DimensionedImage } from '../models';
+import { DimensionedCroppedImage } from '../models';
 
 /**
  * Display Image cropped to the size of the Mask.
@@ -19,8 +19,7 @@ export class DimensionedCroppedImageComponent {
    * mask.width and mask.height are in pixels and are the size of the
    * cropped area/size of the component.
    */
-  @Input() mask: DimensionedImage;
-  @Input() image: DimensionedImage;
+  @Input() cropped: DimensionedCroppedImage;
 
   // Need to get location relative to this element
   // but this element only passes along the location to it's child

@@ -2,9 +2,12 @@
     width: 100%;
     display: flex;
 }
+
 .image-crop .mask {
     border: 1px solid black;
 }
-.masked-area, .rotator {
-	cursor: pointer;
+
+.masked-area,
+.rotator {
+    cursor: pointer;
 }

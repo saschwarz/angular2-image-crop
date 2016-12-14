@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Image, Mask } from '../models';
+import { CroppedImage } from '../models';
 
 
 /**
@@ -11,6 +11,5 @@ import { Image, Mask } from '../models';
   styleUrls: ['./cropped-image.component.css']
 })
 export class CroppedImageComponent {
-  @Input() mask: Mask;
-  @Input() image: Image;
+  @Input() cropped: CroppedImage;
 }

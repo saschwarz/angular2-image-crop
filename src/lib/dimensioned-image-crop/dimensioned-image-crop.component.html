@@ -1,19 +1,19 @@
 <div class="dimensioned-image-crop">
-	<div class="display" tabindex="0" #display>
-		<svg version="1.1" class="mask svg-content" attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}" preserveAspectRatio="xMinYMin meet">
+    <div class="display" tabindex="0">
+        <svg #display version="1.1" class="mask svg-content" attr.viewBox="0 0 {{cropped.image.width}} {{cropped.image.height}}" preserveAspectRatio="xMinYMin meet">
 			<defs>
 				<mask id="dimensioned-image-crop-mask" clipPathUnits="objectBoundingBox">
-					<rect attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" fill="white" />
-					<rect x="0" y="0" attr.width="{{image.dimensions.width}}" attr.height="{{image.dimensions.width}}" opacity="0.2" fill="white" />
+					<rect attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" fill="white" />
+					<rect x="0" y="0" attr.width="{{cropped.image.width}}" attr.height="{{cropped.image.width}}" opacity="0.2" fill="white" />
 				</mask>
 			</defs>
-			<g mask="url(#dimensioned-image-crop-mask)" pinchresize [attr.width]="mask.dimensions.width" [attr.height]="mask.dimensions.height">
-				<image class="image" attr.height="{{image.dimensions.height}}" attr.width="{{image.dimensions.width}}" attr.transform="rotate({{image.image.rotation}} {{image.dimensions.width/2}} {{image.dimensions.height/2}})" [attr.xlink:href]="image.image.url" preventDefault />
-				<rect class="masked-area" dragmove [x]="mask.dimensions.x" [y]="mask.dimensions.y" (locationChange)="onPan($event)" attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" fill="black" fill-opacity="0"/>
+			<g mask="url(#dimensioned-image-crop-mask)" pinchresize [attr.width]="cropped.mask.width" [attr.height]="cropped.mask.height">
+				<image class="image" attr.height="{{cropped.image.height}}" attr.width="{{cropped.image.width}}" attr.transform="rotate({{cropped.rotation}} {{cropped.image.width/2}} {{cropped.image.height/2}})" [attr.xlink:href]="cropped.image.image.url" preventDefault />
+				<rect class="masked-area" dragmove [x]="cropped.x" [y]="cropped.y" (locationChange)="onPan($event)" attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" fill="black" fill-opacity="0"/>
 			</g>
 		</svg>
-	</div>
-	<div class="rotator">
-		<rotator [rotation]="image.image.rotation" (rotationChange)="rotateTo($event)" [attr.height]="viewHeight"></rotator>
-	</div>
+    </div>
+    <div class="rotator">
+        <rotator [rotation]="cropped.rotation" (rotationChange)="rotateTo($event)" [attr.height]="viewHeight"></rotator>
+    </div>
 </div>

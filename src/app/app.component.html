@@ -1,220 +1,219 @@
 <h1>
-	{{title}}
+    {{title}}
 </h1>
 <p>All examples share the same data model; any edits are reflected in all components.</p>
 <div class="section">
-	<h2>Crop Image - Moveable Mask Rotating Image</h2>
-	<p>Move the mask via mouse, gestures, or enter values in inputs and/or use keys:</p>
-	<ul>
-		<li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
-		<li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
-	</ul>
-	<p>Use gestures:</p>
-	<ul>
-		<li>One finger Pan/Drag to position image.</li>
-		<li>Two finger rotate to rotate image.</li>
-		<li>One finger Pan/Drag on dial to rotate image</li>
-		<li>Two finger pinch in/out to scale size of cropped area</li>
-	</ul>
-	<div class="row">
-		<image-crop class="six columns" [mask]="mask" [image]="image"></image-crop>
-	</div>
-	<div class="controls">
-		<fieldset>
-			<legend>Mask</legend>
-			<div class="row">
-				<div class="three columns">
-					<label>Width</label><input type="text" [(ngModel)]="mask.width" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Height</label><input type="text" [(ngModel)]="mask.height" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Translate X</label><input type="text" [(ngModel)]="mask.x" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Translate Y</label><input type="text" [(ngModel)]="mask.y" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Image</legend>
-			<div class="row">
-				<div class="four columns">
-					<label>Width</label><input type="text" [(ngModel)]="image.width" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Height</label><input type="text" [(ngModel)]="image.height" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Image Rotate</label><input type="text" [(ngModel)]="image.rotation" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-	</div>
+    <h2>Crop Image - Moveable Mask Rotating Image</h2>
+    <p>Move the mask via mouse, gestures, or enter values in inputs and/or use keys:</p>
+    <ul>
+        <li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
+        <li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
+    </ul>
+    <p>Use gestures:</p>
+    <ul>
+        <li>One finger Pan/Drag to position image.</li>
+        <li>Two finger rotate to rotate image.</li>
+        <li>One finger Pan/Drag on dial to rotate image</li>
+        <li>Two finger pinch in/out to scale size of cropped area</li>
+    </ul>
+    <div class="row">
+        <image-crop class="six columns" [cropped]="cropped"></image-crop>
+    </div>
+    <div class="controls">
+        <fieldset>
+            <legend>Mask</legend>
+            <div class="row">
+                <div class="three columns">
+                    <label>Width</label><input type="text" [(ngModel)]="cropped.mask.width" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Height</label><input type="text" [(ngModel)]="cropped.mask.height" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Translate X</label><input type="text" [(ngModel)]="cropped.x" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Translate Y</label><input type="text" [(ngModel)]="cropped.y" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Image</legend>
+            <div class="row">
+                <div class="four columns">
+                    <label>Width</label><input type="text" [(ngModel)]="cropped.image.width" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Height</label><input type="text" [(ngModel)]="cropped.image.height" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Image Rotate</label><input type="text" [(ngModel)]="cropped.rotation" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
 <div class="section">
-	<h2>Cropped Image</h2>
-	<p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image.</p>
-	<cropped-image [mask]="mask" [image]="image"></cropped-image>
-	<div class="controls">
-		<fieldset>
-			<legend>Mask</legend>
-			<div class="row">
-				<div class="three columns">
-					<label>Width</label><input type="text" [(ngModel)]="mask.width" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Height</label><input type="text" [(ngModel)]="mask.height" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Translate X</label><input type="text" [(ngModel)]="mask.x" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Translate Y</label><input type="text" [(ngModel)]="mask.y" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Image</legend>
-			<div class="row">
-				<div class="four columns">
-					<label>Width</label><input type="text" [(ngModel)]="image.width" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Height</label><input type="text" [(ngModel)]="image.height" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Image Rotate</label><input type="text" [(ngModel)]="image.rotation" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-	</div>
+    <h2>Cropped Image</h2>
+    <p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image.</p>
+    <cropped-image [cropped]="cropped"></cropped-image>
+    <div class="controls">
+        <fieldset>
+            <legend>Mask</legend>
+            <div class="row">
+                <div class="three columns">
+                    <label>Width</label><input type="text" [(ngModel)]="cropped.mask.width" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Height</label><input type="text" [(ngModel)]="cropped.mask.height" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Translate X</label><input type="text" [(ngModel)]="cropped.x" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Translate Y</label><input type="text" [(ngModel)]="cropped.y" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Image</legend>
+            <div class="row">
+                <div class="four columns">
+                    <label>Width</label><input type="text" [(ngModel)]="cropped.image.width" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Height</label><input type="text" [(ngModel)]="cropped.image.height" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Image Rotate</label><input type="text" [(ngModel)]="cropped.rotation" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
 <div class="section">
-	<h2>Dimensioned Image Crop - Responsive - Moveable Mask Rotating Image</h2>
-	<p>Move the mask via mouse, gestures, or enter values in inputs and/or use keys:</p>
-	<ul>
-		<li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
-		<li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
-	</ul>
-	<p>Use gestures:</p>
-	<ul>
-		<li>One finger Pan/Drag to position image within mask.</li>
-		<li>Two finger rotate to rotate image.</li>
-		<li>One finger Pan/Drag on dial to rotate image</li>
-	</ul>
-	<div class="row">
-		<dimensioned-image-crop class="six columns" [mask]="dMask" [image]="dImage"></dimensioned-image-crop>
-	</div>
-	<div class="controls">
-		<fieldset>
-			<legend>Mask</legend>
-			<div class="row">
-				<div class="three columns">
-					<label>Dimensions X</label><input type="text" [(ngModel)]="dMask.dimensions.x" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Dimensions Y</label><input type="text" [(ngModel)]="dMask.dimensions.y" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Dimensions Width</label><input type="text" [(ngModel)]="dMask.dimensions.width" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Dimensions Height</label><input type="text" [(ngModel)]="dMask.dimensions.height" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Image</legend>
-			<div class="row">
-				<div class="four columns">
-					<label>Dimensions Width</label><input type="text" [(ngModel)]="dImage.dimensions.width" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Dimensions Height</label><input type="text" [(ngModel)]="dImage.dimensions.height" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Rotate</label><input type="text" [(ngModel)]="dImage.image.rotation" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-	</div>
+    <h2>Dimensioned Image Crop - Responsive - Moveable Mask Rotating Image</h2>
+    <p>Move the mask via mouse, gestures, or enter values in inputs and/or use keys:</p>
+    <ul>
+        <li>Up/Down/Left/Right arrow keys move image by 1 pixel. Hold shift key to move by 10 pixels</li>
+        <li>-/= keys rotate by one degree. Hold shift key (-/+) rotate by 10 degrees</li>
+    </ul>
+    <p>Use gestures:</p>
+    <ul>
+        <li>One finger Pan/Drag to position image within mask.</li>
+        <li>Two finger rotate to rotate image.</li>
+        <li>One finger Pan/Drag on dial to rotate image</li>
+    </ul>
+    <div class="row">
+        <dimensioned-image-crop class="six columns" [cropped]="dCropped"></dimensioned-image-crop>
+    </div>
+    <div class="controls">
+        <fieldset>
+            <legend>Mask</legend>
+            <div class="row">
+                <div class="three columns">
+                    <label>Dimensions X</label><input type="text" [(ngModel)]="dCropped.x" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Dimensions Y</label><input type="text" [(ngModel)]="dCropped.y" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Dimensions Width</label><input type="text" [(ngModel)]="dCropped.mask.width" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Dimensions Height</label><input type="text" [(ngModel)]="dCropped.mask.height" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Image</legend>
+            <div class="row">
+                <div class="four columns">
+                    <label>Dimensions Width</label><input type="text" [(ngModel)]="dCropped.image.width" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Dimensions Height</label><input type="text" [(ngModel)]="dCropped.image.height" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Rotate</label><input type="text" [(ngModel)]="dCropped.rotation" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
 <div class="section" id="dimensionedcroppedimage">
-	<h2>Dimensioned Cropped Image</h2>
-	<p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image.
-	   The Image is resized to match the scale of the Mask.
-	</p>
-	<p>Click or touch to see any location's coordinates in the scale of the Mask.
-	</p>
-	<dimensioned-cropped-image [mask]="dMask" [image]="dImage"></dimensioned-cropped-image>
-	<div class="controls">
-		<fieldset>
-			<legend>Mask</legend>
-			<div class="row">
-				<div class="four columns">
-					<label>Width</label><input type="text" [(ngModel)]="dMask.image.width" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Height</label><input type="text" [(ngModel)]="dMask.image.height" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Units</label>
-					<select [(ngModel)]="dMask.dimensions.units" (ngModelChange)="changeUnits($event)">
+    <h2>Dimensioned Cropped Image</h2>
+    <p>The Image is positioned inside the Mask area to look like it is cropped without actually creating a separate cropped image. The Image is resized to match the scale of the Mask.
+    </p>
+    <p>Click or touch to see any location's coordinates in the scale of the Mask.
+    </p>
+    <dimensioned-cropped-image [cropped]="dCropped"></dimensioned-cropped-image>
+    <div class="controls">
+        <fieldset>
+            <legend>Mask</legend>
+            <div class="row">
+                <div class="four columns">
+                    <label>Width</label><input type="text" [(ngModel)]="dCropped.mask.mask.width" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Height</label><input type="text" [(ngModel)]="dCropped.mask.mask.height" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Units</label>
+                    <select [(ngModel)]="dCropped.mask.units" (ngModelChange)="changeUnits($event)">
 						<option *ngFor="let unit of unitValues" [value]="unit">{{units[unit]}}</option>
 					</select>
-				</div>
-			</div>
-			<div class="row">
-				<div class="three columns">
-					<label>Dimensions X</label><input type="text" [(ngModel)]="dMask.dimensions.x" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Dimensions Y</label><input type="text" [(ngModel)]="dMask.dimensions.y" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Dimensions Width</label><input type="text" [(ngModel)]="dMask.dimensions.width" class="u-full-width" />
-				</div>
-				<div class="three columns">
-					<label>Dimensions Height</label><input type="text" [(ngModel)]="dMask.dimensions.height" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Image</legend>
-			<div class="row">
-				<div class="four columns">
-					<label>Dimensions Width</label><input type="text" [(ngModel)]="dImage.dimensions.width" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Dimensions Height</label><input type="text" [(ngModel)]="dImage.dimensions.height" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Rotate</label><input type="text" [(ngModel)]="dImage.image.rotation" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-	</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="three columns">
+                    <label>Dimensions X</label><input type="text" [(ngModel)]="dCropped.x" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Dimensions Y</label><input type="text" [(ngModel)]="dCropped.y" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Dimensions Width</label><input type="text" [(ngModel)]="dCropped.mask.width" class="u-full-width" />
+                </div>
+                <div class="three columns">
+                    <label>Dimensions Height</label><input type="text" [(ngModel)]="dCropped.mask.height" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Image</legend>
+            <div class="row">
+                <div class="four columns">
+                    <label>Dimensions Width</label><input type="text" [(ngModel)]="dCropped.image.width" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Dimensions Height</label><input type="text" [(ngModel)]="dCropped.image.height" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Rotate</label><input type="text" [(ngModel)]="dCropped.rotation" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
 <div class="section" id="gridimage">
-	<h2>Grid Image that can be used as a Mask.</h2>
-	<p>Here the dimensions are in pixels. When used with <a href="#dimensionedimagecrop">DimensionedImageCrop</a> or <a href="#dimensionedcroppedimage">DimensionedCroppedImage</a>		the dimensions could be in scaled units.</p>
-	<grid-image [grid]="grid"></grid-image>
-	<div class="controls">
-		<fieldset>
-			<legend>Grid</legend>
-			<div class="row">
-				<div class="four columns">
-					<label>Width</label><input type="text" [(ngModel)]="grid.width" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Height</label><input type="text" [(ngModel)]="grid.height" class="u-full-width" />
-				</div>
-				<div class="four columns">
-					<label>Spacing</label><input type="text" [(ngModel)]="grid.spacing" class="u-full-width" />
-				</div>
-			</div>
-		</fieldset>
-	</div>
+    <h2>Grid Image that can be used as a Mask.</h2>
+    <p>Here the dimensions are in pixels. When used with <a href="#dimensionedimagecrop">DimensionedImageCrop</a> or <a href="#dimensionedcroppedimage">DimensionedCroppedImage</a> the dimensions could be in scaled units.</p>
+    <grid-image [grid]="grid"></grid-image>
+    <div class="controls">
+        <fieldset>
+            <legend>Grid</legend>
+            <div class="row">
+                <div class="four columns">
+                    <label>Width</label><input type="text" [(ngModel)]="grid.width" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Height</label><input type="text" [(ngModel)]="grid.height" class="u-full-width" />
+                </div>
+                <div class="four columns">
+                    <label>Spacing</label><input type="text" [(ngModel)]="grid.spacing" class="u-full-width" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
