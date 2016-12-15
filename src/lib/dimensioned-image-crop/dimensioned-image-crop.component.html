@@ -1,6 +1,6 @@
 <div class="dimensioned-image-crop">
     <div class="display" tabindex="0">
-        <svg #display version="1.1" class="mask svg-content" attr.viewBox="0 0 {{cropped.image.width}} {{cropped.image.height}}" preserveAspectRatio="xMinYMin meet">
+        <svg #display version="1.1" class="mask" attr.viewBox="0 0 {{cropped.image.width}} {{cropped.image.height}}" preserveAspectRatio="xMinYMin meet">
 			<defs>
 				<mask id="dimensioned-image-crop-mask" clipPathUnits="objectBoundingBox">
 					<rect attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" fill="white" />
@@ -13,7 +13,7 @@
 			</g>
 		</svg>
     </div>
-    <div class="rotator">
-        <rotator [rotation]="cropped.rotation" (rotationChange)="rotateTo($event)" [attr.height]="viewHeight"></rotator>
+    <div class="rotator" [style.height.px]="viewHeight">
+        <rotator [rotation]="cropped.rotation" (rotationChange)="rotateTo($event)"></rotator>
     </div>
 </div>

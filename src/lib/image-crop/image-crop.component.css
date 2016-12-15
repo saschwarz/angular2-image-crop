@@ -1,5 +1,7 @@
 .image-crop {
     width: 100%;
+    align-content: center;
+    justify-content: center;
     display: flex;
 }
 
@@ -12,14 +14,23 @@
     stroke-width: 1px;
 }
 
+.display,
+.rotator {
+    display: flex;
+}
+
 .display {
-    display: inline-block;
     width: 80%;
 }
 
 .rotator {
-    display: inline-block;
     width: 20%;
+}
+
+.display svg,
+.rotator svg {
+    width: 100%;
+    height: 100%;
 }
 
 .masked-area,

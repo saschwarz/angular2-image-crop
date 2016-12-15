@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class RotatorComponent {
   @Input() rotation;
-  @Input('attr.height') height: number;
+  // @Input('attr.height') height: number;
   @Output() rotationChange = new EventEmitter<number>();
 
   private startRotation: number = 0;
