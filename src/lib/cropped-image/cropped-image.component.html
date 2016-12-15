@@ -1,13 +1,13 @@
 <div class="cropped-image">
-    <svg attr.width="{{mask.width}}" attr.height="{{mask.height}}" attr.viewBox="{{mask.x}} {{mask.y}} {{mask.width}} {{mask.height}}">
+    <svg attr.viewBox="{{cropped.x}} {{cropped.y}} {{cropped.mask.width}} {{cropped.mask.height}}">
         <defs>
             <mask id="cropped-image-mask" clipPathUnits="objectBoundingBox">
-                <rect attr.x="{{mask.x}}" attr.y="{{mask.y}}" attr.width="{{mask.width}}" attr.height="{{mask.height}}" fill="white"/>
+                <rect attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" fill="white"/>
             </mask>
         </defs>
         <g mask="url(#cropped-image-mask)">
-            <image preventDefault [attr.xlink:href]="image.url" [attr.width]="image.width" [attr.height]="image.height"
-            attr.transform="rotate({{image.rotation}} {{image.width/2}} {{image.height/2}})"/>
+            <image preventDefault [attr.xlink:href]="cropped.image.url" [attr.width]="cropped.image.width" [attr.height]="cropped.image.height"
+            attr.transform="rotate({{cropped.rotation}} {{cropped.image.width/2}} {{cropped.image.height/2}})"/>
         </g>
     </svg>
 </div>

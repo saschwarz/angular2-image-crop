@@ -1,14 +1,14 @@
 <div class="dimensioned-cropped-image">
-	<svg attr.width="{{mask.image.width}}" attr.height="{{mask.image.height}}" attr.viewBox="{{mask.dimensions.x}} {{mask.dimensions.y}} {{mask.dimensions.width}} {{mask.dimensions.height}}">
+    <svg attr.viewBox="{{cropped.x}} {{cropped.y}} {{cropped.mask.width}} {{cropped.mask.height}}">
 		<defs>
 			<mask id="dimensioned-cropped-image-mask" clipPathUnits="objectBoundingBox">
-				<rect attr.x="{{mask.dimensions.x}}" attr.y="{{mask.dimensions.y}}" attr.width="{{mask.dimensions.width}}" attr.height="{{mask.dimensions.height}}" fill="white" />
+				<rect attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" fill="white" />
 			</mask>
 		</defs>
 		<g mask="url(#dimensioned-cropped-image-mask)" locate-touch (locationChange)="showLocation($event)">
-			<image preventDefault [attr.xlink:href]="image.image.url" [attr.width]="image.dimensions.width" [attr.height]="image.dimensions.height" attr.transform="rotate({{image.image.rotation}} {{image.dimensions.width/2}} {{image.dimensions.height/2}})"
-				 attr.viewBox="0 0 {{image.dimensions.width}} {{image.dimensions.height}}"/>
-			<g crossHair [attr.x]="currentX" [attr.y]="currentY" [attr.dimensions]="mask.dimensions"></g>
+			<image preventDefault [attr.xlink:href]="cropped.image.image.url" [attr.width]="cropped.image.width" [attr.height]="cropped.image.height" attr.transform="rotate({{cropped.rotation}} {{cropped.image.width/2}} {{cropped.image.height/2}})"
+				 attr.viewBox="0 0 {{cropped.image.width}} {{cropped.image.height}}"/>
+			<g crossHair [attr.x]="currentX" [attr.y]="currentY" [attr.dimensions]="cropped.mask"></g>
 		</g>
 	</svg>
 </div>

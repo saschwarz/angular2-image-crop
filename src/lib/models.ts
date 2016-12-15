@@ -4,44 +4,62 @@ export class Image {
     /**
      * Image width in pixels.
      */
-    width: number;
+    width: number = 0;
     /**
      * Image height in pixels.
      */
-    height: number;
+    height: number = 0;
     /**
-     * Optional URL for mask/image.
+     * Optional URL for Crop/image.
      */
-    url: URL;
+    url: string = '';
+
+    constructor(title = '', width = 0, height = 0, url = '') {
+        this.title = title;
+        this.width = width;
+        this.height = height;
+        this.url = url;
+    }
+}
+
+
+/**
+ *  Mask is an area or image overlayed/cropping an Image.
+ */
+export class Mask extends Image {
+    opacity: number = 0;
+    constructor(title = '', width = 0, height = 0, url = '', opacity = 0) {
+        super(title, width, height, url);
+        this.opacity = opacity;
+    }
+}
+
+
+/**
+ * CroppedImage holds the location of a Mask relative to an Image.
+ * The x/y location is relative to the top left corner of
+ * the Image over which this Mask is overlayed in pixels.
+ * The rotation is the rotation about the center of the image.
+ */
+export class CroppedImage {
+    image: Image;
+    mask: Mask;
+    x: number = 0;
+    y: number = 0;
     /**
-     * Rotation in degrees about the center of the image.
+     * Rotation of image in degrees about the center of the image.
      */
     rotation: number = 0;
 
-    constructor(object: any) {
-        this.title = object.title || '';
-        this.width = object.width;
-        this.height = object.height;
-        this.url = object.url || '';
-        this.rotation = object.rotation || 0;
-    }
+    constructor(image, mask, x = 0, y = 0, rotation = 0) {
+        this.image = image;
+        this.mask = mask;
+        this.x = x;
+        this.y = y;
+        this.rotation = rotation;
+     }
 }
 
-/**
- * Mask is an area or image overlayed/cropping an Image.
- * The x/y location is relative to the top left corner of
- * the Image over which this Mask is overlayed in pixels.
- */
-export class Mask extends Image {
-    x: number = 0;
-    y: number = 0;
-
-    constructor(object: any) {
-        super(object);
-        this.x = object.x || 0;
-        this.y = object.y || 0;
-    }
-}
 
 /**
  * Origin locations
@@ -59,7 +77,7 @@ export enum VerticalOrigin {
 }
 
 /**
- * Actual units represented by the Image/Mask.
+ * Actual units represented by the Dimensioned Image/Crop.
  * To support conversions.
  */
 export enum Units {
@@ -68,7 +86,7 @@ export enum Units {
 }
 
 /**
- * The location and size of an Image or Mask relative to it's container's origin.
+ * The location and size of an Image or Crop relative to it's container's origin.
  */
 export class Dimensions {
     /**
@@ -80,14 +98,6 @@ export class Dimensions {
     yOrigin: VerticalOrigin = VerticalOrigin.top;
 
     /**
-     * X location in units from origin of it's container (if any).
-     */
-    x: number = 0;
-    /**
-     * Y location in units from origin of it's container (if any).
-     */
-    y: number = 0;
-    /**
      * Width in units.
      */
     width: number;
@@ -96,12 +106,12 @@ export class Dimensions {
      */
     height: number;
 
-    constructor({units = Units.meters, width = 100, height = 100, x = 0, y = 0} = {}) {
+    constructor(units = Units.meters, width = 0, height = 0, xOrigin = HorizontalOrigin.left, yOrigin = VerticalOrigin.top) {
         this.units = units;
         this.width = width;
         this.height = height;
-        this.x = x;
-        this.y = y;
+        this.xOrigin = xOrigin;
+        this.yOrigin = yOrigin;
     }
 
     displayValue(x: number): string {
@@ -126,28 +136,77 @@ export class Dimensions {
  * DimensionedImage is an Image with a dimensions member describing
  * the Image's real world size.
  */
-export class DimensionedImage {
+export class DimensionedImage extends Dimensions {
     image: Image;
-    dimensions: Dimensions;
 
-    constructor(image: Image, dimensions: Dimensions) {
+    constructor(image: Image, units = Units.meters, width = 0, height = 0, xOrigin = HorizontalOrigin.left, yOrigin = VerticalOrigin.top) {
+        super(units, width, height, xOrigin, yOrigin);
         this.image = image;
-        this.dimensions = dimensions;
     }
 };
 
 
+/**
+ * DimensionedMask is an Mask with a dimensions member describing
+ * the Mask's real world size.
+ */
+export class DimensionedMask extends Dimensions {
+    mask: Mask;
+
+    constructor(mask: Mask, units = Units.meters, width = 0, height = 0, xOrigin = HorizontalOrigin.left, yOrigin = VerticalOrigin.top) {
+        super(units, width, height, xOrigin, yOrigin);
+        this.mask = mask;
+    }
+};
+
+
+/**
+ * A DimensionedMask applied to a DimensionedImage at a specific location/rotation.
+ */
+export class DimensionedCroppedImage {
+    // Has an Image not a Crop because the location
+    // of the DimensionedCrop is specified in
+    // Units not in pixels.
+    image: DimensionedImage;
+    mask: DimensionedMask;
+    /**
+     * X location in units from origin of it's container (if any).
+     */
+    x: number = 0;
+    /**
+     * Y location in units from origin of it's container (if any).
+     */
+    y: number = 0;
+    /**
+     * Rotation of image in degrees about the center of the image.
+     */
+    rotation: number = 0;
+
+    constructor(image: DimensionedImage, mask: DimensionedMask, x = 0, y = 0, rotation = 0) {
+        this.image = image;
+        this.mask = mask;
+        this.x = x;
+        this.y = y;
+        this.rotation = rotation;
+    }
+}
+
+
+/**
+ * Represent a grid of horizontal and vertical lines
+ * in the specific Units of width/height at spacing.
+ */
 export class Grid {
     units: Units = Units.meters;
     width: number;
     height: number;
     spacing: number;
 
-    constructor(object: any) {
-        this.units = object.units;
-        this.width = object.width;
-        this.height = object.height;
-        this.spacing = object.spacing;
+    constructor(units: Units, width: number, height: number, spacing: number) {
+        this.units = units;
+        this.width = width;
+        this.height = height;
+        this.spacing = spacing;
     }
 
     private lines(max: number) {
