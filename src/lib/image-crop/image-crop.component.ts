@@ -1,5 +1,4 @@
-import { Component, HostListener, Input } from '@angular/core';
-
+import { AfterViewChecked, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { CroppedImage } from '../models';
 
 
@@ -8,8 +7,18 @@ import { CroppedImage } from '../models';
   templateUrl: './image-crop.component.html',
   styleUrls: ['./image-crop.component.css']
 })
-export class ImageCropComponent {
+export class ImageCropComponent implements AfterViewChecked  {
   @Input() cropped: CroppedImage;
+  @ViewChild('display') display: ElementRef;
+  private viewHeight: number = 0;
+
+  public ngAfterViewChecked(): void {
+    if (this.viewHeight !== this.display.nativeElement.clientHeight - 1) {
+      // don't take full height or end up in endless loop as parent container
+      // resizes and this is called again and again.
+      setTimeout(() => this.viewHeight = this.display.nativeElement.clientHeight - 1, 0);
+    }
+  }
 
   @HostListener('keyup', ['$event'])
   protected onKey(event: KeyboardEvent): void {

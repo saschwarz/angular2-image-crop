@@ -18,7 +18,6 @@ export class DimensionedImageCropComponent implements AfterViewChecked {
   private viewHeight: number = 0;
 
   public ngAfterViewChecked(): void {
-    console.log([this.viewHeight, this.display.nativeElement.clientHeight]);
     if (this.viewHeight !== this.display.nativeElement.clientHeight - 1) {
       // don't take full height or end up in endless loop as parent container
       // resizes and this is called again and again.

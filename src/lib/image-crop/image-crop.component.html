@@ -1,6 +1,6 @@
 <div class="image-crop">
-    <div class="display svg-content" tabindex="0">
-        <svg version="1.1" class="mask svg-content" attr.width="100%" attr.height="100%" attr.viewBox="0 0 {{cropped.image.width}} {{cropped.image.height}}" [style.height.px]="cropped.image.height">
+    <div class="display" tabindex="0">
+        <svg #display version="1.1" class="mask svg-content" attr.viewBox="0 0 {{cropped.image.width}} {{cropped.image.height}}" preserveAspectRatio="xMinYMin meet">
 			<defs>
 				<mask id="image-crop-mask" clipPathUnits="objectBoundingBox">
 					<rect attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" fill="white" />
@@ -9,11 +9,11 @@
 			</defs>
 			<g mask="url(#image-crop-mask)" pinchresize [attr.width]="cropped.mask.width" [attr.height]="cropped.mask.height" (sizeChange)="onSizeChange($event)">
 				<image class="image" attr.height="{{cropped.image.height}}" attr.width="{{cropped.image.width}}" attr.transform="rotate({{cropped.rotation}} {{cropped.image.width/2}} {{cropped.image.height/2}})" [attr.xlink:href]="cropped.image.url" preventDefault />
-				<rect class="masked-area" dragmove [x]="cropped.x" [y]="cropped.y" (locationChange)="onPan($event)" attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" stroke="red" stroke-width="3" fill="black" fill-opacity="0"/>
+				<rect class="masked-area" dragmove [x]="cropped.x" [y]="cropped.y" (locationChange)="onPan($event)" attr.x="{{cropped.x}}" attr.y="{{cropped.y}}" attr.width="{{cropped.mask.width}}" attr.height="{{cropped.mask.height}}" fill="black" fill-opacity="0"/>
 			</g>
 		</svg>
     </div>
     <div class="rotator svg-content">
-        <rotator [rotation]="cropped.rotation" (rotationChange)="rotateTo($event)" [attr.height]="cropped.image.height"></rotator>
+        <rotator [rotation]="cropped.rotation" (rotationChange)="rotateTo($event)" [attr.height]="viewHeight"></rotator>
     </div>
 </div>
