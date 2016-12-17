@@ -4,6 +4,6 @@
     <image class="compass" width="500" height="500" xlink:href="assets/compass.svg" preventDefault (panstart)="onPanRotateStart($event)"
       (panmove)="onPanRotate($event)" />
   </g>
-  <image class="rotate-counterclockwise" x="10" y="15" width="40" height="40" xlink:href="assets/rotate-counterclockwise.svg" (tap)="onRotateBy($event, -1)"/>
-  <image class="rotate-clockwise" x="10" y="445" width="40" height="40" xlink:href="assets/rotate-clockwise.svg" (tap)="onRotateBy($event, 1)"/>
+  <image class="rotate-counterclockwise" x="5" y="15" width="50" height="50" xlink:href="assets/rotate-counterclockwise.svg" (tap)="onRotateBy($event, -45)"/>
+  <image class="rotate-clockwise" x="5" y="445" width="50" height="50" xlink:href="assets/rotate-clockwise.svg" (tap)="onRotateBy($event, 45)"/>
 </svg>
