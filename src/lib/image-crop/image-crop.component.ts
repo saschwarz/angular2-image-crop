@@ -12,6 +12,11 @@ export class ImageCropComponent implements AfterViewChecked  {
   @ViewChild('display') display: ElementRef;
   private viewHeight: number = 0;
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.ngAfterViewChecked();
+  }
+
   public ngAfterViewChecked(): void {
     if (this.viewHeight !== this.display.nativeElement.clientHeight - 1) {
       // don't take full height or end up in endless loop as parent container
